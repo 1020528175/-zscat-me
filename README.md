@@ -7,6 +7,13 @@ springboot dubbo redis solr mq kafka 商城 blog cms
  
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0830/111141_ed72ed26_134431.png "1504062698384.png")
 
+# 演示地址
+
+
+1. 后台 http://jdweixin.tunnel.qydev.com/
+1. 前台 http://jdweixin.tunnel.qydev.com/front/index
+1. h5 http://jdweixin.tunnel.qydev.com/wap
+
 # zscat
 
 
