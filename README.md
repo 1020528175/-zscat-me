@@ -9,10 +9,13 @@ springboot dubbo redis solr mq kafka 商城 blog cms
 
 # 演示地址
 
+1. 后台 http://ccc9ce5d.ngrok.io
+2. 前台 http://ccc9ce5d.ngrok.io/front/index
+3. h5 http://ccc9ce5d.ngrok.io/wap
 
 1. 后台 http://jdweixin.tunnel.qydev.com/
-1. 前台 http://jdweixin.tunnel.qydev.com/front/index
-1. h5 http://jdweixin.tunnel.qydev.com/wap
+2. 前台 http://jdweixin.tunnel.qydev.com/front/index
+3. h5 http://jdweixin.tunnel.qydev.com/wap
 
 # zscat
 
