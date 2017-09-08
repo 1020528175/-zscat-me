@@ -8,7 +8,9 @@ springboot dubbo redis solr mq kafka 商城 blog cms
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0830/111141_ed72ed26_134431.png "1504062698384.png")
 
 # 演示地址
+natappfree 映射一直在变  群里每天会发最新演示 
 
+http://8awsvw.natappfree.cc/login
 1. 后台 http://p4vadd.natappfree.cc/login;jsessionid=37C324F3D58E1250DE3B3BCECBCF1F3D
 2. 前台 http://p4vadd.natappfree.cc/front/index
 3. h5 http://p4vadd.natappfree.cc/wap
