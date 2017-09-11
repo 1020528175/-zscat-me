@@ -116,45 +116,51 @@ public class WxServerController extends BaseController {
 
             WxMenu menu = new WxMenu();
             WxMenuButton button2 = new WxMenuButton();
-            button2.setType("click");
-            button2.setName("营销后台");
-            button2.setKey("to_kefu");
-            button2.setUrl(appDomain + Constant.WX_H5_URI + "user/tginfo");
-            WxMenuButton button3 = new WxMenuButton();
-            button3.setName("推广计划");
+            button2.setType("view");
+            button2.setName("zscat官网");
+            button2.setKey("gw");
+            button2.setUrl(appDomain + "/gw/index");
 
+            WxMenuButton button3 = new WxMenuButton();
+            button3.setName("zscat序列");
 
             ArrayList<WxMenuButton> promotionplanbtns = new ArrayList<>();
 
             WxMenuButton button4 = new WxMenuButton();
             button4.setType("view");
-            button4.setName("推广后台");
+            button4.setName("zscat营销");
             button4.setKey("to_manager");
             button4.setUrl(appDomain + Constant.WX_H5_URI + "user/tginfo");
-
-
+            //blog
             WxMenuButton button5 = new WxMenuButton();
             button5.setType("view");
-            button5.setName("推广计划");
-            button5.setKey("to_promotionplan");
-            button5.setUrl("http://www.if-chat.com");
+            button5.setName("zscat博客");
+            button5.setKey("ms");
+            button5.setUrl(appDomain +  "/front/blog/indexs");
+            //cms
+            WxMenuButton button6 = new WxMenuButton();
+            button6.setType("view");
+            button6.setName("zscat内容管理");
+            button6.setKey("ms");
+            button6.setUrl(appDomain +  "/front/blog/indexs");
 
             promotionplanbtns.add(button4);
             promotionplanbtns.add(button5);
+            promotionplanbtns.add(button6);
             button3.setSubButtons(promotionplanbtns);
 
 
-            WxMenuButton button6 = new WxMenuButton();
-            button6.setType("view");
-            button6.setName("下载app");
-            button6.setKey("to_downapp");
-            button6.setUrl("http://www.if-chat.com");
+            WxMenuButton button7 = new WxMenuButton();
+            button7.setType("view");
+            button7.setName("zscat商城");
+            button7.setKey("to_downapp");
+            button7.setUrl(appDomain +  "/front/blog/indexs");
 
 
             ArrayList<WxMenuButton> btns = new ArrayList<>();
             btns.add(button2);
             btns.add(button3);
-            btns.add(button6);
+            btns.add(button7);
             menu.setButtons(btns);
             wxMpService.getMenuService().menuCreate(menu);
             logger.info("----create menu");

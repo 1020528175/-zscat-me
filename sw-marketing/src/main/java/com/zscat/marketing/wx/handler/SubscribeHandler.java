@@ -41,7 +41,7 @@ public class SubscribeHandler extends AbstractHandler {
 
         WxMpXmlOutTextMessage m
                 = WxMpXmlOutMessage.TEXT()
-                .content("尊敬的" + wxMpUser.getNickname() + "，您好！")
+                .content("尊敬的" + wxMpUser.getNickname() + "，您好！，最新源码下载 开源中国 http://git.oschina.net/catshen/zscat_sw")
                 .fromUser(wxMessage.getToUser())
                 .toUser(wxMessage.getFromUser())
                 .build();

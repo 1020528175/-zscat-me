@@ -7,6 +7,7 @@
   <modules>
 
 	    <module>sw-common</module>
+	  <module>sw-marketing</module>
 	 <!-- <module>sw-cms</module>
 	  <module>sw-blog</module>
 	  <module>sw_manager</module>
@@ -19,7 +20,7 @@
 	  <!--
             <module>sw-shop</module>
             <module>sw_manager</module>-->
-	  <module>sw-shop</module>
+
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

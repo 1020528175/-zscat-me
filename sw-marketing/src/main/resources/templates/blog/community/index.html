@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="vke">
+<head>
+<meta charset="utf-8" />
+<title>基于Layui的轻量级问答社区页面模版</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="keywords" content="zsCat,layui,前端社区" />
+<meta name="description"
+	content="zsCat社区是模块化前端UI框架Layui的官网社区，致力于为web开发提供强劲动力" />
+<link rel="stylesheet"
+	href="/blog/shequ/layui/css/layui.css" />
+<link rel="stylesheet"
+	href="/blog/shequ/css/global.css" />
+</head>
+<body>
+
+<div th:replace="SheQuHeader"></div>
+
+	<div class="main layui-clear">
+		<div class="wrap">
+			<div class="content">
+				<div class="zsCat-tab">
+					<span> <a href="${ctxPath!}/front/blog/indexs">全部</a>
+
+					</span>
+					<form action="http://cn.bing.com/search" class="zsCat-search">
+						<i class="iconfont icon-sousuo"></i> <input class="layui-input"
+							autocomplete="off" placeholder="搜索内容，回车跳转" type="text" name="q" />
+					</form>
+					<a href="${ctxPath}/person/adds" class="layui-btn jie-add">发布问题</a>
+				</div>
+
+
+				<ul class="zsCat-list" id="bna"  th:each="top14:${blogList}">
+
+					<li class="zsCat-list-li"><a th:href="@{/front/blog/shequDetail(id=${top14.id})}"
+												 class="zsCat-list-avatar"> <img
+							src="" alt=""/>
+					</a>
+						<h2 class="zsCat-tip">
+							<a th:href="@{/front/blog/shequDetail(id=${top14.id})}" th:text="${top14.title}">${top14.title}</a> <span
+								class="zsCat-tip-stick">置顶</span> <span class="zsCat-tip-jing">精帖</span>
+						</h2>
+						<p>
+							<span><a th:href="@{/front/blog/shequDetail(id=${top14.id})}">ZSCAT</a></span>
+							<span th:text="${top14.releasedate}">${top14.releasedate}</span> <span></span>
+							<span class="zsCat-list-hint"> <i class="iconfont"
+															  title="回答">&#xe60c;</i> 317 <i class="iconfont" title="人气">&#xe60b;</i>
+								6830
+							</span>
+						</p></li>
+
+					
+				</ul>
+
+				<div style="text-align: center">
+					<div class="laypage-main">
+						<a href="${ctxPath!}/front/blog/indexs" class="laypage-next">更多求解</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="edge">
+
+
+			<h3 class="page-title">月度雷锋 - TOP 12</h3>
+			<div class="user-looklog leifeng-rank" th:each="top11:${blogTopList.list}">
+
+				<li><a th:href="@{/front/blog/shequDetail(id=${top11.id})}" th:text="${top11.title}">${top11.title}</a>
+					<span><i class="iconfont">&#xe60b;</i> 6087</span></li>
+			</div>
+
+			<h3 class="page-title">最近热帖</h3>
+			<ol class="zsCat-list-one">
+				<li th:each="top1:${blogTopList.list}"><a th:href="@{/front/blog/shequDetail(id=${top1.id})}" th:text="${top1.title}">${top1.title}</a>
+					<span><i class="iconfont">&#xe60b;</i> 6087</span></li>
+				 
+
+			</ol>
+
+			<h3 class="page-title">近期热议</h3>
+			<ol class="zsCat-list-one" th:each="top2:${blogRamList.list}">
+				<li ><a th:href="@{/front/blog/shequDetail(id=${top2.id})}" th:text="${top2.title}">${top2.title}</a>
+					<span><i class="iconfont">&#xe60b;</i> 6087</span></li>
+				 
+
+			</ol>
+
+			<div class="zsCat-link">
+				<span>友情链接：</span>
+				<li th:each="top13:${blogTopList.list}"><a th:href="@{/front/blog/shequDetail(id=${top13.id})}" th:text="${top13.title}">${top13.title}</a>
+					<span><i class="iconfont">&#xe60b;</i> 6087</span></li>
+
+
+				
+			</div>
+
+
+		</div>
+	</div>
+
+	<div class="footer">
+		<p>
+			<a href="http://zsCat.layui.com/">zsCat社区</a> 2016 &copy; <a
+				href="http://www.layui.com/">layui.com</a>
+		</p>
+		<p>
+			<a href="http://zsCat.layui.com/auth/get" target="_blank">产品授权</a> <a
+				href="http://zsCat.layui.com/jie/3147.html" target="_blank">VIP说明</a>
+			<a href="http://www.layui.com/" target="_blank">商务合作</a> <a
+				href="http://weibo.com/SentsinXu" target="_blank" rel="nofollow">微博</a>
+			<a href="http://zsCat.layui.com/jie/2461.html" target="_blank">微信公众号</a>
+		</p>
+	</div>
+	<script src="/blog/shequ/layui/layui.js"></script>
+	<script>
+
+	function bna(type,obj) {
+		var lodingHtml = '<div class="tac"><img width="100" height="108" alt="" src="/loading.gif" /></div>' , _timer = null;;
+		$.ajax({
+			url :"${ctxPath!}/front/blog/ajax/bna",
+			data : {
+				"order" : type
+			},
+			type : 'post',
+			dataType : 'text',
+			beforeSend:function(){
+				$("#bna").html(lodingHtml);
+				clearTimeout(_timer);
+				
+			},
+			success : function(result) { 
+				_timer = setTimeout(function(){
+					$("#bna").html(result);
+				}, 300);
+			}
+		});
+	}
+layui.cache.page = '';
+layui.cache.user = {
+  username: '游客'
+  ,uid: -1
+  ,avatar: '/blog/shequ/images/avatar/00.jpg'
+  ,experience: 83
+  ,sex: '男'
+};
+layui.config({
+  version: "1.0.0"
+  ,base: '/blog/shequ/mods/'
+}).extend({
+  zsCat: 'index'
+}).use('zsCat');
+</script>
+
+</body>
+</html>
