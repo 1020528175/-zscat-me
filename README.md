@@ -8,6 +8,7 @@ springboot dubbo redis solr mq kafka 商城 blog cms
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0830/111141_ed72ed26_134431.png "1504062698384.png")
 
 # 演示地址
+blog: http://blog.csdn.net/a1439226817/article/details/77776949
 natappfree 映射一直在变  群里每天会发最新演示 
 
 1. 后台 http://zscat.tunnel.qydev.com/
