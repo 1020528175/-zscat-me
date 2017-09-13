@@ -1,5 +1,6 @@
 springboot dubbo redis solr mq kafka 商城 blog cms
- 
+###  单机版商城  http://git.oschina.net/JiaGou-XiaoGe/payshop
+
 
 ### qq群 483681368
 
@@ -81,7 +82,7 @@ natappfree 映射一直在变  群里每天会发最新演示
 ### 需要启动redis 127.0.0.1 6379 没有密码
 - a.启动shop-services下面的ShopServiceApplication主类，启动blog的dubbo服务
 - b.启动shop-web下面的ShopWebApplication主类，访问  http://localhost:2007/front http://localhost:2007/youhong
-- c.启动shop-h5下面的ShopWebApplication主类，访问 http://localhost:2006/wap1 
+- c.启动shop-h5下面的ShopWebApplication主类，访问 http://localhost:2006/wap 
 ### 5.search模块为例
   
 
