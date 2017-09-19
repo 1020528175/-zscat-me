@@ -1,5 +1,7 @@
 springboot dubbo redis solr mq kafka 商城 blog cms
 ###  单机版商城  http://git.oschina.net/JiaGou-XiaoGe/payshop
+###  jeeplus单机版商城 https://gitee.com/JiaGou-XiaoGe/jeeplusBanDuoShangJiaShangCheng
+### 支付聚合 https://gitee.com/jmdhappy/xxpay-master 
 
 
 ### qq群 483681368
