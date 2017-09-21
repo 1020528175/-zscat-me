@@ -1,7 +1,7 @@
 springboot dubbo redis solr mq kafka 商城 blog cms
 ###  单机版商城  http://git.oschina.net/JiaGou-XiaoGe/payshop
 ###  jeeplus单机版商城 https://gitee.com/JiaGou-XiaoGe/jeeplusBanDuoShangJiaShangCheng
-### 支付聚合 https://gitee.com/jmdhappy/xxpay-master 
+### 支付聚合 https://gitee.com/catshen/xxpay-master
 
 
 ### qq群 483681368
@@ -109,7 +109,7 @@ natappfree 映射一直在变  群里每天会发最新演示
 
 
 
-https://gitee.com/jmdhappy/xxpay-master 支付
+https://gitee.com/catshen/xxpay-masterr 支付
 ###  请作者喝杯咖啡
 
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0829/203712_6694b4c1_134431.jpeg "weixin.jpg")
