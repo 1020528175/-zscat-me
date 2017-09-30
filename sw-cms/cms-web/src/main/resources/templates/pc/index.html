@@ -6,13 +6,13 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="stylesheet" href="/static/pc/css/amazeui.min.css">
-<link rel="stylesheet" href="/static/pc/css/petshow.css?6">
-<link rel="stylesheet" href="/static/pc/css/animate.min.css">
-<script src="/static/pc/js/jquery.min.js"></script>
-<script src="/static/pc/js/amazeui.min.js"></script>
-<script src="/static/pc/js/countUp.min.js"></script>
-<script src="/static/pc/js/amazeui.lazyload.min.js"></script>
+<link rel="stylesheet" href="${ctxPath!}/static/pc/css/amazeui.min.css">
+<link rel="stylesheet" href="${ctxPath!}/static/pc/css/petshow.css?6">
+<link rel="stylesheet" href="${ctxPath!}/static/pc/css/animate.min.css">
+<script src="${ctxPath!}/static/pc/js/jquery.min.js"></script>
+<script src="${ctxPath!}/static/pc/js/amazeui.min.js"></script>
+<script src="${ctxPath!}/static/pc/js/countUp.min.js"></script>
+<script src="${ctxPath!}/static/pc/js/amazeui.lazyload.min.js"></script>
 
 
 </head>
@@ -20,8 +20,8 @@
 	<header class="am-topbar am-topbar-inverse">
 		<div class="amz-container">
 			<h1 class="am-topbar-brand">
-				<a href="/web/cms/index" class="am-topbar-logo"> <img
-					src="/static/pc/img/logo.png?1" alt="">
+				<a href="${ctxPath!}/web/cms/index" class="am-topbar-logo"> <img
+					src="${ctxPath!}/static/pc/img/logo.png?1" alt="">
 				</a>
 			</h1>
 			<button
@@ -33,24 +33,22 @@
 			<div class="am-collapse am-topbar-collapse"
 				id="doc-topbar-collapse-5">
 				<ul class="am-nav am-nav-pills am-topbar-nav">
-					<li class="am-active"><a href="/web/cms/index">
+					<li class="am-active"><a href="${ctxPath!}/web/cms/index">
 							首页 </a></li> 
-						
-							<#if cateList?? >
-					<#list cateList as nav>
-					<li><a href="/web/cms/house/${nav.id}">
-							${nav.name!''}</a></li> 
-							</#list>
-					</#if>
+							@var cateList=auth.getCateGory("houseNav"); 
+							@for(nav in cateList){
+					<li><a href="${ctxPath!}/web/cms/house/${nav.id}">
+							${nav.name!}</a></li> 
+							@}
 					<li class="am-dropdown" data-am-dropdown=""><a
 						class="am-dropdown-toggle" data-am-dropdown-toggle=""
 						href="javascript:;"> 网站切换 <span class="am-icon-caret-down">
 						</span>
 					</a>
 						<ul class="am-dropdown-content">
-							<li><a href="/web/cms/index"> 房产网站</a></li>
-							<li><a href="/web/cms/indexT"> 旅游网站 </a></li>
-							<li><a href="/web/cms/blog"> blog </a></li>
+							<li><a href="${ctxPath!}/web/cms/index"> 房产网站</a></li>
+							<li><a href="${ctxPath!}/web/cms/indexT"> 旅游网站 </a></li>
+							<li><a href="${ctxPath!}/web/cms/blog"> blog </a></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -61,16 +59,16 @@
 			<div class="am-u-lg-12">
 				<div class="get-title">
 					<div class="get_font_left">
-						<img src="/static/pc/img/font_yjy.png" alt="">
+						<img src="${ctxPath!}/static/pc/img/font_yjy.png" alt="">
 					</div>
 					<div class="get_font_center" id="banner_num"></div>
 					<div class="get_font_rigth">
-						<img src="/static/pc/img/font_zty.png" alt="">
+						<img src="${ctxPath!}/static/pc/img/font_zty.png" alt="">
 					</div>
 				</div>
 
 				<div class="font_line">
-					<img src="/static/pc/img/font_line.png" alt="">
+					<img src="${ctxPath!}/static/pc/img/font_line.png" alt="">
 				</div>
 				<p>
 					<a href="###"
@@ -107,9 +105,9 @@
 			<div class="am_footer_link">
 				<span>关于宠物秀</span>
 				<ul>
-					<li><a href="/web/cms/aboutus">关于我们</a></li>
-					<li><a href="/web/cms/history">发展历程</a></li>
-					<li><a href="/web/cms/link">友情链接</a></li>
+					<li><a href="${ctxPath!}/web/cms/aboutus">关于我们</a></li>
+					<li><a href="${ctxPath!}/web/cms/history">发展历程</a></li>
+					<li><a href="${ctxPath!}/web/cms/link">友情链接</a></li>
 				</ul>
 			</div>
 
@@ -118,7 +116,7 @@
 				<span>房产秀</span>
 				<dl>
 					<dt>
-						<img src="/static/pc/img/footdon.png?1" alt="">
+						<img src="${ctxPath!}/static/pc/img/footdon.png?1" alt="">
 					</dt>
 					<dd>
 						一起Show我们的房产吧！宠物秀是图片配文字、涂鸦、COSPLAY的移动手机社区，这里有猫狗鱼龟兔子仓鼠龙猫等各种萌图。 <a
@@ -134,12 +132,12 @@
 
 			<div class="am_footer_erweima">
 				<div class="am_footer_weixin">
-					<img src="/static/pc/img/wx.jpg" alt="">
+					<img src="${ctxPath!}/static/pc/img/wx.jpg" alt="">
 
 					<div class="am_footer_d_gzwx am-icon-weixin">关注微信</div>
 				</div>
 				<div class="am_footer_ddon">
-					<img src="/static/pc/img/wx.jpg" alt="">
+					<img src="${ctxPath!}/static/pc/img/wx.jpg" alt="">
 
 					<div class="am_footer_d_dxz am-icon-cloud-download">扫码下载</div>
 				</div>
@@ -151,15 +149,15 @@
 			Copyright(c)2015 <span>zscat</span> All Rights Reserved
 		</div>
 	</footer>
-	<script src="/static/pc/js/petshow.js"></script>
+	<script src="${ctxPath!}/static/pc/js/petshow.js"></script>
 	<script>
 	$(".banner_hover").click();
 	//精品、最新、全部课程
 	function bna(type,obj) {
-		var lodingHtml = '<div class="tac"><img width="100" height="108" alt="" src="/static/loading.gif"></div>' , _timer = null;
+		var lodingHtml = '<div class="tac"><img width="100" height="108" alt="" src="${ctxPath!}/static/loading.gif"></div>' , _timer = null;
 		$(obj).addClass('banner_hover').siblings().removeClass('banner_hover');
 		$.ajax({
-			url :"/web/cms/index/ajax/bna",
+			url :"${ctxPath!}/web/cms/index/ajax/bna",
 			data : {
 				"order" : type
 			},

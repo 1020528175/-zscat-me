@@ -9,10 +9,9 @@
 	    <module>sw-common</module>
 	
 	  <module>dubbo-cache-starter</module>
-	  <module>sw-marketing</module>
 	  <module>sw-blog</module>
 	  <module>sw-cms</module>
-	  <module>sw_manager</module>
+	<module>sw_manager</module>
 	  <module>sw_portl</module>
 	  <module>sw-shop</module>
        

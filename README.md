@@ -78,13 +78,13 @@ natappfree 映射一直在变  群里每天会发最新演示
 
 
 - a.启动cms-services下面的cmsServiceApplication主类，启动blog的dubbo服务
-- b.启动cms-web下面的cmsWebApplication主类，访问 http://localhost:2001/web/cms/index http://localhost:2001/wap/cms/index
+- b.启动cms-web下面的cmsWebApplication主类，访问 http://localhost:2004/web/cms/index http://localhost:2004/wap/cms/index
 ### 4.shop模块为例  
 
 
 ### 需要启动redis 127.0.0.1 6379 没有密码
 - a.启动shop-services下面的ShopServiceApplication主类，启动blog的dubbo服务
-- b.启动shop-web下面的ShopWebApplication主类，访问  http://localhost:2007/front http://localhost:2007/youhong
+- b.启动shop-web下面的ShopWebApplication主类，访问  http://localhost:2005/front http://localhost:2005/youhong
 - c.启动shop-h5下面的ShopWebApplication主类，访问 http://localhost:8080/wap 
 ### 5.search模块为例
   
