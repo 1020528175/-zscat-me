@@ -14,9 +14,10 @@ springboot dubbo redis solr mq kafka 商城 blog cms
 blog: http://blog.csdn.net/a1439226817/article/details/77776949
 natappfree 映射一直在变  群里每天会发最新演示 
 
-1. 后台 http://zscat.tunnel.qydev.com/
-2. 前台 http://zscat.tunnel.qydev.com/front/index
-3. h5 http://zscat.tunnel.qydev.com/wap
+
+2. 前台 http://rnitte.natappfree.cc/front/index
+3. h5 http://rnitte.natappfree.cc/wap
+1. 后台 http://rnitte.natappfree.cc/login
 
 # zscat
 
@@ -84,7 +85,7 @@ natappfree 映射一直在变  群里每天会发最新演示
 ### 需要启动redis 127.0.0.1 6379 没有密码
 - a.启动shop-services下面的ShopServiceApplication主类，启动blog的dubbo服务
 - b.启动shop-web下面的ShopWebApplication主类，访问  http://localhost:2007/front http://localhost:2007/youhong
-- c.启动shop-h5下面的ShopWebApplication主类，访问 http://localhost:2006/wap 
+- c.启动shop-h5下面的ShopWebApplication主类，访问 http://localhost:8080/wap 
 ### 5.search模块为例
   
 
