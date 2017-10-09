@@ -15,9 +15,9 @@ blog: http://blog.csdn.net/a1439226817/article/details/77776949
 natappfree 映射一直在变  群里每天会发最新演示 
 
 
-2. 前台 http://rnitte.natappfree.cc/front/index
-3. h5 http://rnitte.natappfree.cc/wap
-1. 后台 http://rnitte.natappfree.cc/login
+2. 前台 http://zscat.tunnel.qydev.com/front/index
+3. h5 http://zscat.tunnel.qydev.com/wap
+1. 后台 http://zscat.tunnel.qydev.com/login
 
 # zscat
 
