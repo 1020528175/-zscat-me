@@ -22,7 +22,7 @@
             <scope>test</scope>
         </dependency>
         <!--war 部署必须依赖-->
-        <dependency>
+        <!--<dependency>
             <groupId>com.sankuai.mms</groupId>
             <artifactId>mms-boot</artifactId>
             <version>${mms-boot-version}</version>
@@ -32,7 +32,7 @@
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.ants.monitor</groupId>
