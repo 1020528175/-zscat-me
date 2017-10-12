@@ -14,7 +14,7 @@
 	<module>sw_manager</module>
 	  <module>sw_portl</module>
 	  <module>sw-shop</module>
-       
+	  <module>sw-search</module>
 
 	</modules>
 	<parent>
