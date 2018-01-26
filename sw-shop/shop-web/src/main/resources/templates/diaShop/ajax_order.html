@@ -1,0 +1,33 @@
+<tbody th:each="order:${tOrderList}">
+<tr>
+    <td colspan="6" class="Order_form_time" th:text="${order.createdate}+',订单号：'+${order.ordersn}">2015-12-3 订单号：445454654654654</td>
+</tr>
+<tr>
+    <td colspan="3">
+        <table class="Order_product_style">
+            <tbody>
+            <tr  th:each="goods:${order.goodsList}">
+                <td>
+                    <div class="product_name clearfix">
+                        <a th:href="@{'/diaShop/goodsDetail/'+${goods.goodsid}}" class="product_img">
+                            <img th:src="@{${goods.img}}" width="80px" height="80px"></a>
+                        <a th:href="@{'/diaShop/goodsDetail/'+${goods.goodsid}}" th:text="${goods.goodsname}">水蜜桃</a>
+                        <p class="specification">礼盒装20个/盒</p>
+                    </div>
+                </td>
+                <td th:text="${goods.price}">5</td>
+                <td th:text="${goods.count}">2</td>
+            </tr>
+            </tbody>
+        </table>
+    </td>
+    <td class="split_line" th:text="${order.totalprice}">100</td>
+    <td class="split_line"
+        th:text="${order.status==9 ? '待付款' : (order.status==1 ? '待发货' : (order.status==2 ? '待收货' : '已完成'))}">待付款</td>
+    <td class="operating">
+        <a th:href="@{'/person/diaShop/orderDetail/'+${order.id}}">查看详细</a>
+        <p th:if="${order.status eq 9}"><a th:href="@{'/person/diaShop/pay/'+${order.id}}" class="liji">立即付款</a></p>
+        <p th:if="${order.status eq 9}"><a href="#" th:onclick="'javascript:cancelOrder('+${order.id}+')'">取消订单</a></p>
+    </td>
+</tr>
+</tbody>

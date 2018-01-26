@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/diaShop/css/common.css" rel="stylesheet" type="text/css"/>
+    <link href="/diaShop/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/diaShop/fonts/iconfont.css" rel="stylesheet" type="text/css"/>
+    <script src="/diaShop/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="/diaShop/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+    <script src="/diaShop/js/common_js.js" type="text/javascript"></script>
+    <script src="/diaShop/js/footer.js" type="text/javascript"></script>
+    <script src="/diaShop/js/lrtk.js" type="text/javascript"></script>
+    <title>品牌街</title>
+</head>
+
+<body>
+<!--顶部图层-->
+<div th:replace="diaShop/layout/mallHeader"></div>
+
+<!--广告-->
+<div style=" background-image:url(/diaShop/images/ADimg_02.png); background-position:center; background-repeat:no-repeat; height:400px;"></div>
+<!--品牌团购样式-->
+<div class="Inside_pages">
+    <div class="buy_brands">
+        <!--品牌-->
+        <div class="buy_brands_logo">
+            <div class="title_name"><img src="/diaShop/images/title_buy_03.png"/></div>
+            <div class="brands_logo_list">
+                <div class="hd"></div>
+                <div class="bd">
+                    <ul>
+                        <li>
+                            <a th:each="brand:${brandList}" class="brand_logo" th:href="@{'/diaShop/goodsByBrand/'+${brand.id}}">
+                                <img th:src="@{${brand.img}}"width="160"/><span th:text="${brand.name}">欧珀莱</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:each="brand:${brandList}" class="brand_logo" th:href="@{'/diaShop/goodsByBrand/'+${brand.id}}">
+                                <img th:src="@{${brand.img}}"width="160"/><span th:text="${brand.name}">欧珀莱</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="prev" href="javascript:void(0)"></a>
+                <a class="next" href="javascript:void(0)"></a>
+            </div>
+            <script type="text/javascript">
+                jQuery(".brands_logo_list").slide({mainCell: ".bd ul", trigger: "click"});
+            </script>
+        </div>
+        <!--团购列表-->
+        <div class="buy_brands_list">
+            <div class="title_name"><img src="/diaShop/images/title_buy_06.png"/></div>
+            <ul class="p_sell">
+
+                <li th:each="sell,iterStat:${sellList}">
+                    <div class="img"><img th:src="@{${sell.img}}" width="160" height="140"></div>
+                    <div class="name" th:text="${sell.title}">Olay玉兰油 多效修护霜50g（新老包装随机发放）</div>
+                    <div class="price">
+                        <table border="0" style="width:100%; color:#888888;" cellspacing="0" cellpadding="0">
+                            <tbody>
+                            <tr style="font-family:'宋体';">
+                                <td width="33%">市场价</td>
+                                <td width="33%">折扣</td>
+                                <td width="33%">为您节省</td>
+                            </tr>
+                            <tr>
+                                <td style="text-decoration:line-through;" th:text="'￥'+${sell.prices}">￥5388</td>
+                                <td>8.0</td>
+                                <td>￥100</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ch_bg">
+                        <span class="ch_txt"><font th:text="'￥'+${sell.prices}">5288</font></span>
+                        <a th:href="@{'/diaShop/goodsDetail/'+${sell.id}}" class="ch_a">查看</a>
+                    </div>
+                    <div class="times">倒计时：1200 时 30 分 28 秒</div>
+                </li>
+
+            </ul>
+        </div>
+        <!---->
+        <div class="sell_style clearfix">
+            <div class="advisory sell">
+                <div class="left_sell">
+                    <a href="#">
+                        <img src="/diaShop/images/tm_1.png"></a>
+                </div>
+                <div class="right_sell">
+                    客服在线时间
+                    <br>
+                    每天09:00 - 18:00
+                </div>
+            </div>
+            <div class="Recharge sell">
+                <div class="left_sell">
+                    <a href="#">
+                        <img src="/diaShop/images/tm_2.png"></a>
+                </div>
+                <div class="right_sell">
+                    享受VIP专属特权
+                    <br>
+                    <b>更有专属优惠等着你</b>
+                </div>
+            </div>
+            <div class="advisory_phone sell">
+                <div class="left_sell">
+                    <em class="iconfont icon-dianhua"></em>
+                    <h2>400-3453-333</h2>
+                    <h3>客服热线（免长途费）</h3>
+                </div>
+                <div class="right_sell">
+                    电话咨询时间
+                    <br>
+                    每天09:00 - 24:00
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="diaShop/layout/mallFooter"></div>
+</body>
+</html>

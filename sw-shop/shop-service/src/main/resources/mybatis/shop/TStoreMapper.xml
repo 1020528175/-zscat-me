@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.TStoreDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.TStoreDO">
+		select `id`,`addTime`,`deleteStatus`,`storeAddress`,`storeCredit`,`storeInfo`,`storeMsn`,`storeName`,`storeOwer`,`storeQq`,`storeRecommend`,`storeSeoDescription`,`storeSeoKeywords`,`storeStatus`,`storeTelephone`,`storeZip`,`template`,`areaId`,`storeBannerId`,`storeLicenseId`,`img`,`favoriteCount`,`storeLat`,`storeLng`,`storeWw`,`mapType`,`storeDistribution` from t_store where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.TStoreDO">
+		select `id`,`addTime`,`deleteStatus`,`storeAddress`,`storeCredit`,`storeInfo`,`storeMsn`,`storeName`,`storeOwer`,`storeQq`,`storeRecommend`,`storeSeoDescription`,`storeSeoKeywords`,`storeStatus`,`storeTelephone`,`storeZip`,`template`,`areaId`,`storeBannerId`,`storeLicenseId`,`img`,`favoriteCount`,`storeLat`,`storeLng`,`storeWw`,`mapType`,`storeDistribution` from t_store
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="addtime != null and addtime != ''"> and addTime = #{addtime} </if>
+		  		  <if test="deletestatus != null and deletestatus != ''"> and deleteStatus = #{deletestatus} </if>
+		  		  <if test="storeaddress != null and storeaddress != ''"> and storeAddress = #{storeaddress} </if>
+		  		  <if test="storecredit != null and storecredit != ''"> and storeCredit = #{storecredit} </if>
+		  		  <if test="storeinfo != null and storeinfo != ''"> and storeInfo = #{storeinfo} </if>
+		  		  <if test="storemsn != null and storemsn != ''"> and storeMsn = #{storemsn} </if>
+		  		  <if test="storename != null and storename != ''"> and storeName = #{storename} </if>
+		  		  <if test="storeower != null and storeower != ''"> and storeOwer = #{storeower} </if>
+		  		  <if test="storeqq != null and storeqq != ''"> and storeQq = #{storeqq} </if>
+		  		  <if test="storerecommend != null and storerecommend != ''"> and storeRecommend = #{storerecommend} </if>
+		  		  <if test="storeseodescription != null and storeseodescription != ''"> and storeSeoDescription = #{storeseodescription} </if>
+		  		  <if test="storeseokeywords != null and storeseokeywords != ''"> and storeSeoKeywords = #{storeseokeywords} </if>
+		  		  <if test="storestatus != null and storestatus != ''"> and storeStatus = #{storestatus} </if>
+		  		  <if test="storetelephone != null and storetelephone != ''"> and storeTelephone = #{storetelephone} </if>
+		  		  <if test="storezip != null and storezip != ''"> and storeZip = #{storezip} </if>
+		  		  <if test="template != null and template != ''"> and template = #{template} </if>
+		  		  <if test="areaid != null and areaid != ''"> and areaId = #{areaid} </if>
+		  		  <if test="storebannerid != null and storebannerid != ''"> and storeBannerId = #{storebannerid} </if>
+		  		  <if test="storelicenseid != null and storelicenseid != ''"> and storeLicenseId = #{storelicenseid} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		  <if test="favoritecount != null and favoritecount != ''"> and favoriteCount = #{favoritecount} </if>
+		  		  <if test="storelat != null and storelat != ''"> and storeLat = #{storelat} </if>
+		  		  <if test="storelng != null and storelng != ''"> and storeLng = #{storelng} </if>
+		  		  <if test="storeww != null and storeww != ''"> and storeWw = #{storeww} </if>
+		  		  <if test="maptype != null and maptype != ''"> and mapType = #{maptype} </if>
+		  		  <if test="storedistribution != null and storedistribution != ''"> and storeDistribution = #{storedistribution} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_store
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="addtime != null and addtime != ''"> and addTime = #{addtime} </if>
+		  		  <if test="deletestatus != null and deletestatus != ''"> and deleteStatus = #{deletestatus} </if>
+		  		  <if test="storeaddress != null and storeaddress != ''"> and storeAddress = #{storeaddress} </if>
+		  		  <if test="storecredit != null and storecredit != ''"> and storeCredit = #{storecredit} </if>
+		  		  <if test="storeinfo != null and storeinfo != ''"> and storeInfo = #{storeinfo} </if>
+		  		  <if test="storemsn != null and storemsn != ''"> and storeMsn = #{storemsn} </if>
+		  		  <if test="storename != null and storename != ''"> and storeName = #{storename} </if>
+		  		  <if test="storeower != null and storeower != ''"> and storeOwer = #{storeower} </if>
+		  		  <if test="storeqq != null and storeqq != ''"> and storeQq = #{storeqq} </if>
+		  		  <if test="storerecommend != null and storerecommend != ''"> and storeRecommend = #{storerecommend} </if>
+		  		  <if test="storeseodescription != null and storeseodescription != ''"> and storeSeoDescription = #{storeseodescription} </if>
+		  		  <if test="storeseokeywords != null and storeseokeywords != ''"> and storeSeoKeywords = #{storeseokeywords} </if>
+		  		  <if test="storestatus != null and storestatus != ''"> and storeStatus = #{storestatus} </if>
+		  		  <if test="storetelephone != null and storetelephone != ''"> and storeTelephone = #{storetelephone} </if>
+		  		  <if test="storezip != null and storezip != ''"> and storeZip = #{storezip} </if>
+		  		  <if test="template != null and template != ''"> and template = #{template} </if>
+		  		  <if test="areaid != null and areaid != ''"> and areaId = #{areaid} </if>
+		  		  <if test="storebannerid != null and storebannerid != ''"> and storeBannerId = #{storebannerid} </if>
+		  		  <if test="storelicenseid != null and storelicenseid != ''"> and storeLicenseId = #{storelicenseid} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		  <if test="favoritecount != null and favoritecount != ''"> and favoriteCount = #{favoritecount} </if>
+		  		  <if test="storelat != null and storelat != ''"> and storeLat = #{storelat} </if>
+		  		  <if test="storelng != null and storelng != ''"> and storeLng = #{storelng} </if>
+		  		  <if test="storeww != null and storeww != ''"> and storeWw = #{storeww} </if>
+		  		  <if test="maptype != null and maptype != ''"> and mapType = #{maptype} </if>
+		  		  <if test="storedistribution != null and storedistribution != ''"> and storeDistribution = #{storedistribution} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.TStoreDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_store
+		(
+			`addTime`, 
+			`deleteStatus`, 
+			`storeAddress`, 
+			`storeCredit`, 
+			`storeInfo`, 
+			`storeMsn`, 
+			`storeName`, 
+			`storeOwer`, 
+			`storeQq`, 
+			`storeRecommend`, 
+			`storeSeoDescription`, 
+			`storeSeoKeywords`, 
+			`storeStatus`, 
+			`storeTelephone`, 
+			`storeZip`, 
+			`template`, 
+			`areaId`, 
+			`storeBannerId`, 
+			`storeLicenseId`, 
+			`img`, 
+			`favoriteCount`, 
+			`storeLat`, 
+			`storeLng`, 
+			`storeWw`, 
+			`mapType`, 
+			`storeDistribution`
+		)
+		values
+		(
+			#{addtime}, 
+			#{deletestatus}, 
+			#{storeaddress}, 
+			#{storecredit}, 
+			#{storeinfo}, 
+			#{storemsn}, 
+			#{storename}, 
+			#{storeower}, 
+			#{storeqq}, 
+			#{storerecommend}, 
+			#{storeseodescription}, 
+			#{storeseokeywords}, 
+			#{storestatus}, 
+			#{storetelephone}, 
+			#{storezip}, 
+			#{template}, 
+			#{areaid}, 
+			#{storebannerid}, 
+			#{storelicenseid}, 
+			#{img}, 
+			#{favoritecount}, 
+			#{storelat}, 
+			#{storelng}, 
+			#{storeww}, 
+			#{maptype}, 
+			#{storedistribution}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.TStoreDO">
+		update t_store 
+		<set>
+			<if test="addtime != null">`addTime` = #{addtime}, </if>
+			<if test="deletestatus != null">`deleteStatus` = #{deletestatus}, </if>
+			<if test="storeaddress != null">`storeAddress` = #{storeaddress}, </if>
+			<if test="storecredit != null">`storeCredit` = #{storecredit}, </if>
+			<if test="storeinfo != null">`storeInfo` = #{storeinfo}, </if>
+			<if test="storemsn != null">`storeMsn` = #{storemsn}, </if>
+			<if test="storename != null">`storeName` = #{storename}, </if>
+			<if test="storeower != null">`storeOwer` = #{storeower}, </if>
+			<if test="storeqq != null">`storeQq` = #{storeqq}, </if>
+			<if test="storerecommend != null">`storeRecommend` = #{storerecommend}, </if>
+			<if test="storeseodescription != null">`storeSeoDescription` = #{storeseodescription}, </if>
+			<if test="storeseokeywords != null">`storeSeoKeywords` = #{storeseokeywords}, </if>
+			<if test="storestatus != null">`storeStatus` = #{storestatus}, </if>
+			<if test="storetelephone != null">`storeTelephone` = #{storetelephone}, </if>
+			<if test="storezip != null">`storeZip` = #{storezip}, </if>
+			<if test="template != null">`template` = #{template}, </if>
+			<if test="areaid != null">`areaId` = #{areaid}, </if>
+			<if test="storebannerid != null">`storeBannerId` = #{storebannerid}, </if>
+			<if test="storelicenseid != null">`storeLicenseId` = #{storelicenseid}, </if>
+			<if test="img != null">`img` = #{img}, </if>
+			<if test="favoritecount != null">`favoriteCount` = #{favoritecount}, </if>
+			<if test="storelat != null">`storeLat` = #{storelat}, </if>
+			<if test="storelng != null">`storeLng` = #{storelng}, </if>
+			<if test="storeww != null">`storeWw` = #{storeww}, </if>
+			<if test="maptype != null">`mapType` = #{maptype}, </if>
+			<if test="storedistribution != null">`storeDistribution` = #{storedistribution}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_store where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_store where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/diaShop/css/common.css" rel="stylesheet" type="text/css"/>
+    <link href="/diaShop/fonts/iconfont.css" rel="stylesheet" type="text/css"/>
+    <link href="/diaShop/css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="/diaShop/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="/diaShop/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+    <script src="/diaShop/js/common_js.js" type="text/javascript"></script>
+    <script src="/diaShop/js/footer.js" type="text/javascript"></script>
+    <script src="/js/plugins/layer/layer.min.js"></script>
+    <title>商城首页</title>
+</head>
+<body>
+<!--顶部广告-->
+<div class="p_f_name infonav_hidden"
+     style="background:url(/diaShop/images/top_AD_01.png) no-repeat; background-position:center; height:436px; width:100%">
+    <div class="Menu_style"><p class="infonav_mores"><a href="#" class="more" href="javascript:"
+                                                        onclick="infonav_more_down(0);return false;"><em
+            class="iconfont icon-close2"></em></a></p></div>
+</div>
+<!--悬浮广告-->
+<div class="mod_qr">
+    <a href="#" class="mod_qr_bd"><img src="/diaShop/images/AD-p-3.jpg"/></a>
+    <a href="javascript:void(0);" id="close" class="fixed_qr_close"><em class="iconfont icon-close2"></em></a>
+</div>
+<!--做成悬浮菜单样式-->
+<div class="Suspension" id="left_nav">
+    <div class="Suspension_top"></div>
+    <div class="Suspension_menu">
+        <ul>
+            <li><a href="/diaShop/daySee" target="_blank" class="">每日必看</a></li>
+            <li><a href="/diaShop/daySee" target="_blank" class="">爆款榜</a></li>
+            <li><a href="/diaShop/daySee" target="_blank" class="">上新单品</a></li>
+            <li><a href="/diaShop/groupList" target="_blank" class="">品牌团购</a></li>
+        </ul>
+    </div>
+    <div class=""></div>
+</div>
+<div th:replace="diaShop/layout/mallHeader"></div>
+
+<!--幻灯片样式-->
+<div id="slideBox" class="slideBox">
+    <div class="hd">
+        <ul class="smallUl"></ul>
+    </div>
+    <div class="bd">
+        <ul>
+            <li th:each="banner:${bannerList}"><a th:href="${banner.url}" target="_blank">
+                <div th:style="'background:url(' + ${banner.img} + ') no-repeat; background-position:center; width:100%; height:460px;'"></div>
+            </a></li>
+
+        </ul>
+    </div>
+    <!-- 下面是前/后按钮代码，如果不需要删除即可 -->
+    <a class="prev" href="javascript:void(0)"></a>
+    <a class="next" href="javascript:void(0)"></a>
+
+</div>
+<script type="text/javascript">
+    jQuery(".slideBox").slide({titCell: ".hd ul", mainCell: ".bd ul", autoPlay: true, autoPage: true});
+</script>
+</div>
+<div class="index_style clearfix">
+    <!--广告-->
+    <div class="p_Deals">
+        <div class="Deals_title">
+            <div class="title_name"><h1>美妆特卖</h1>
+                <h2>-大牌火热热卖中-</h2></div>
+            <img src="/diaShop/images/AD-bg1_10.png"/></div>
+        <div class="Deals_list">
+            <ul class="products">
+                <li th:each="com:${commList}"><a th:href="@{'/diaShop/goodsDetail/'+${com.id}}">
+                    <img th:src="@{${com.img}}"/>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--限时特卖-->
+    <div class="Limit_p">
+        <div class="Limit_title"><img src="/diaShop/images/Limit_img_20.png"/>
+            <div class="title_name"><h1>限时团购</h1>
+                <h2>LIMIT BUY</h2>
+                <h3>品牌限时优惠促销</h3></div>
+        </div>
+        <div class="Limit_list">
+            <ul class="p_t_list">
+                <li th:each="hit:${hitList}">
+                    <a th:href="@{'/diaShop/goodsDetail/'+${hit.id}}"><span th:text="${hit.title}">御泥坊  </span>
+                        <img th:src="@{${hit.img}}" width="180" height="170"/>
+                        <div class="time"><em class="iconfont icon-time"></em>剩余时间：05时03分45秒</div>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <!--品牌展示-->
+    <div class="Brand_Show" id="Brand_Show">
+        <div class="parHd  Toggle">
+            <ul>
+                <li>国际大牌<em></em></li>
+                <li>推荐品牌<em></em></li>
+                <li>国货精品<em></em></li>
+            </ul>
+        </div>
+        <div class="parBd list">
+            <div class="parBdIn">
+                <ul>
+                    <li class="brand_list">
+                        <a th:each="brand:${brandList}" class="brand_logo" th:href="@{'/diaShop/goodsByBrand/'+${brand.id}}">
+                            <img th:src="@{${brand.img}}"width="160"/><span th:text="${brand.name}">欧珀莱</span>
+                        </a>
+
+                    </li>
+                    <li class="brand_ad">
+                        <div class="AD_slideBox" id="AD_slideBox">
+                            <div class="hd">
+                                <ul></ul>
+                            </div>
+                            <div class="bd">
+                                <ul>
+                                    <li><a href="#"><img src="/diaShop/images/AD.png"/></a></li>
+                                    <li><a href="#"><img src="/diaShop/images/AD1.jpg"/></a></li>
+                                    <li><a href="#"><img src="/diaShop/images/AD2.jpg"/></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            jQuery(".AD_slideBox").slide({
+                                titCell: ".hd ul",
+                                mainCell: ".bd ul",
+                                autoPlay: true,
+                                autoPage: true,
+                                interTime: 5000
+                            });
+                        </script>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="brand_list">
+                        <a th:each="brand:${brandList}" class="brand_logo" th:href="@{'/diaShop/goodsByBrand/'+${brand.id}}">
+                            <img th:src="@{${brand.img}}"width="160"/><span th:text="${brand.name}">欧珀莱</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="brand_list">
+                        <a th:each="brand:${brandList}" class="brand_logo" th:href="@{'/diaShop/goodsByBrand/'+${brand.id}}">
+                            <img th:src="@{${brand.img}}"width="160"/><span th:text="${brand.name}">欧珀莱</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <a class="prev" href="javascript:void(0)"><em class="iconfont icon-left"></em></a>
+        <a class="next" href="javascript:void(0)"><em class="iconfont icon-right"></em></a>
+    </div>
+    <script type="text/javascript">jQuery("#Brand_Show").slide({
+        titCell: ".parHd li",
+        mainCell: ".parBdIn",
+        trigger: "click"
+    });</script>
+    <!--产品版块-->
+    <div class="p_Section clearfix" th:each="floor,iterStat:${floorList}">
+        <div class="Section_title">
+            <div class="name"><em th:text="${iterStat.count+'F'}">1F</em><span th:text="${floor.title}"></span></div>
+            <div class="p_link">
+                <a th:each="gcs:${floor.goodsClassList}" th:href="@{'/diaShop/goodsByClass/'+${gcs.id}}" th:text="${gcs.name}">面膜</a> |</div>
+        </div>
+        <div class="Section_info clearfix">
+            <div class="pro_ad_slide">
+                <div class="hd">
+                    <ul></ul>
+                </div>
+                <div class="bd">
+                    <ul>
+                        <li><a th:href="@{${floor.advurl}}" ><img th:src="@{${floor.advimg}}" width="598" height="449"/></a></li>
+                    </ul>
+                </div>
+                <a class="prev" href="javascript:void(0)"><em class="arrow"></em></a>
+                <a class="next" href="javascript:void(0)"><em class="arrow"></em></a>
+            </div>
+            <script type="text/javascript">
+                jQuery(".pro_ad_slide").slide({
+                    titCell: ".hd ul",
+                    mainCell: ".bd ul",
+                    autoPlay: true,
+                    autoPage: true,
+                    interTime: 6000
+                });
+            </script>
+            <!--产品列表-->
+            <div class="pro_list">
+                <ul>
+                    <li th:each="goods,starStat:${floor.goodsList}" th:if="${starStat.count lt 7}">
+                        <a th:href="@{'/diaShop/goodsDetail/'+${goods.id}}">
+                            <img th:src="@{${goods.img}}" width="180px" height="150px"/></a>
+                        <a th:href="@{'/diaShop/goodsDetail/'+${goods.id}}" class="p_title_name" th:text="${goods.title}">Olay玉兰油</a>
+                        <div class="Numeral"><span class="price"><i th:text="'￥'+${goods.prices}">￥</i>
+                        </span><span class="Sales">销量<i th:text="${goods.sellhit}">345</i>件</span>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="pro_ads">
+                <ul>
+                    <li class="border" th:each="goods1:${floor.goodsList1}">
+                        <a th:href="@{'/diaShop/goodsDetail/'+${goods1.id}}">
+                            <img th:src="@{${goods1.img}}" width="198" height="140px"/></a></li>
+                   </ul>
+            </div>
+            <div class="pro_logo">
+                <a th:each="brand:${floor.brandList}" th:href="@{'/diaShop/goodsByBrand/'+${brand.id}}">
+                    <img th:src="@{${brand.img}}" width="112" height="30"/>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <!--猜你喜欢样式-->
+    <div class="like_p">
+        <div class="title_name"><span>猜你喜欢</span></div>
+        <div class="list">
+            <ul class="list_style">
+                <li class="p_info_u" th:each="xinpin:${xinpinList}">
+                    <a th:href="@{'/diaShop/goodsDetail/'+${xinpin.id}}" class="p_img">
+                        <img width="230px" height="230px" th:src="@{${xinpin.img}}"/></a>
+                    <a th:href="@{'/diaShop/goodsDetail/'+${xinpin.id}}" class="name" th:text="${xinpin.title}">御泥坊 </a>
+                    <div class="Numeral"><span class="price"><i th:text="'￥'+${xinpin.prices}">￥</i></span><span
+                            class="Sales">销量<i th:text="${xinpin.sellhit}">345</i>件</span></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div th:replace="diaShop/layout/mallFooter"></div>
+</body>
+</html>
+<script type="text/javascript">
+    //浮动导航
+    function float_nav(dom) {
+        var right_nav = $(dom);
+        var nav_height = right_nav.height();
+
+        function right_nav_position(bool) {
+            var window_height = $(window).height();
+            var nav_top = (window_height - nav_height) / 2;
+            if (bool) {
+                right_nav.stop(true, false).animate({top: nav_top + $(window).scrollTop()}, 400);
+            } else {
+                right_nav.stop(true, false).animate({top: nav_top}, 300);
+            }
+            right_nav.show();
+        }
+
+        if (!+'\v1' && !window.XMLHttpRequest) {
+            $(window).bind('scroll resize', function () {
+                if ($(window).scrollTop() > 300) {
+                    right_nav_position(true);
+                } else {
+                    right_nav.hide();
+                }
+            })
+        } else {
+            $(window).bind('scroll resize', function () {
+                if ($(window).scrollTop() > 300) {
+                    right_nav_position();
+                } else {
+                    right_nav.hide();
+                }
+            })
+        }
+    }
+    float_nav('#float');
+    float_nav('#left_nav');
+</script>

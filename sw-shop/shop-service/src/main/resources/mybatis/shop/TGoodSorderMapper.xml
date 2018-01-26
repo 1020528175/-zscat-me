@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.TGoodSorderDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.TGoodSorderDO">
+		select `id`,`goodsid`,`orderid`,`img` ,`price`,`count`,goodsname from t_good_sorder where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.TGoodSorderDO">
+		select `id`,`goodsid`,`orderid`,`price`,`count`,`img`,goodsname  from t_good_sorder
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="goodsid != null and goodsid != ''"> and goodsid = #{goodsid} </if>
+		  		  <if test="orderid != null and orderid != ''"> and orderid = #{orderid} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_good_sorder
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="goodsid != null and goodsid != ''"> and goodsid = #{goodsid} </if>
+		  		  <if test="orderid != null and orderid != ''"> and orderid = #{orderid} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.TGoodSorderDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_good_sorder
+		(
+			`goodsid`, 
+			`orderid`,
+			goodsname,
+			`price`,
+			`count`,
+			`img`
+		)
+		values
+		(
+			#{goodsid}, 
+			#{orderid},
+			#{goodsname},
+			#{price},
+			#{count},
+			#{img}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.TGoodSorderDO">
+		update t_good_sorder 
+		<set>
+			<if test="goodsid != null">`goodsid` = #{goodsid}, </if>
+			<if test="orderid != null">`orderid` = #{orderid}, </if>
+			<if test="img != null">`img` = #{img}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_good_sorder where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_good_sorder where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

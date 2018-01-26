@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.TArticleDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.TArticleDO">
+		select `id`,`title`,`summary`,`releaseDate`,`clickHit`,`replyHit`,`content`,`keyWord`,`state`,`img`,`villageid`,`username` from t_article where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.TArticleDO">
+		select `id`,`title`,`summary`,`releaseDate`,`clickHit`,`replyHit`,`content`,`keyWord`,`state`,`img`,`villageid`,`username` from t_article
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="summary != null and summary != ''"> and summary = #{summary} </if>
+		  		  <if test="releasedate != null and releasedate != ''"> and releaseDate = #{releasedate} </if>
+		  		  <if test="clickhit != null and clickhit != ''"> and clickHit = #{clickhit} </if>
+		  		  <if test="replyhit != null and replyhit != ''"> and replyHit = #{replyhit} </if>
+		  		  <if test="content != null and content != ''"> and content = #{content} </if>
+		  		  <if test="keyword != null and keyword != ''"> and keyWord = #{keyword} </if>
+		  		  <if test="state != null and state != ''"> and state = #{state} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		  <if test="villageid != null and villageid != ''"> and villageid = #{villageid} </if>
+		  		  <if test="username != null and username != ''"> and username = #{username} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_article
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="summary != null and summary != ''"> and summary = #{summary} </if>
+		  		  <if test="releasedate != null and releasedate != ''"> and releaseDate = #{releasedate} </if>
+		  		  <if test="clickhit != null and clickhit != ''"> and clickHit = #{clickhit} </if>
+		  		  <if test="replyhit != null and replyhit != ''"> and replyHit = #{replyhit} </if>
+		  		  <if test="content != null and content != ''"> and content = #{content} </if>
+		  		  <if test="keyword != null and keyword != ''"> and keyWord = #{keyword} </if>
+		  		  <if test="state != null and state != ''"> and state = #{state} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		  <if test="villageid != null and villageid != ''"> and villageid = #{villageid} </if>
+		  		  <if test="username != null and username != ''"> and username = #{username} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.TArticleDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_article
+		(
+			`title`, 
+			`summary`, 
+			`releaseDate`, 
+			`clickHit`, 
+			`replyHit`, 
+			`content`, 
+			`keyWord`, 
+			`state`, 
+			`img`, 
+			`villageid`, 
+			`username`
+		)
+		values
+		(
+			#{title}, 
+			#{summary}, 
+			#{releasedate}, 
+			#{clickhit}, 
+			#{replyhit}, 
+			#{content}, 
+			#{keyword}, 
+			#{state}, 
+			#{img}, 
+			#{villageid}, 
+			#{username}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.TArticleDO">
+		update t_article 
+		<set>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="summary != null">`summary` = #{summary}, </if>
+			<if test="releasedate != null">`releaseDate` = #{releasedate}, </if>
+			<if test="clickhit != null">`clickHit` = #{clickhit}, </if>
+			<if test="replyhit != null">`replyHit` = #{replyhit}, </if>
+			<if test="content != null">`content` = #{content}, </if>
+			<if test="keyword != null">`keyWord` = #{keyword}, </if>
+			<if test="state != null">`state` = #{state}, </if>
+			<if test="img != null">`img` = #{img}, </if>
+			<if test="villageid != null">`villageid` = #{villageid}, </if>
+			<if test="username != null">`username` = #{username}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_article where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_article where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

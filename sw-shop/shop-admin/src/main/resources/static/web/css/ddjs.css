@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+.pay_ddjs{ border:1px solid #DDDDDD;}
+.pay_ddjs_tit{background-color: #F7F7F7;height: 28px;padding-top: 7px;}
+.pay_ddjs_tit h2{background: url(images/checkout-title.gif) no-repeat scroll 10px 0;height: 35px;line-height: 100px;overflow: hidden;}
+.pay_ddjs_shrxx{}
+.pay_ddjs_step1{ border-top:1px solid #ddd;}
+.step-title{height: 45px;line-height: 45px;padding: 0 20px;position: relative;}
+.step-action {color: #005EA7;font-size: 12px;font-weight: 400;padding-left: 10px;}
+.step-action a , .step-action a:hover {color: #005EA7;}
+.step-content{}
+.step-content .sbox-wrap {padding: 0 44px; color:#666666;}
+.pay_ddjs_step2{ border-top:1px solid #ddd;}
+.step-title a.return-edit{float: right;font-size: 12px;font-weight: 400;padding-right: 24px;}
+.step-title a{color: #005EA7;}
+.pay_ddxxtab{ margin:0 auto; width:935px;}
+.jhd_tabtit .jsfh{ background:#ffece5;}
+.jhd_tabtit .srk1{border: 1px solid #A0AFC4;color: #AFADAE;padding: 2px 5px;width: 375px; margin:5px 0 0 0;}
+.ml20{ margin-left:20px;}
+
+.pay_order{ color:#666666;width:500px; float:right; margin-top:25px; margin-right:20px;}
+.pay_order_nex{padding-right:10px;}
+.pay_order_nex p{ font-weight:normal}
+.yqmje{ width:90px; display:inline-block;}
+.pay_zejs{ border-top:1px solid #ddd; height:46px; background:#eeeeee;}
+.pay_zejs p span{ line-height:46px; color:#666;}
+.pay_zejs img{ vertical-align:-13px; _margin-top:5px;}
+.pay_zejs p span.clff4400{ color:#ff4400}
+.step-current{border: 3px solid #FF6600;margin: -1px;position: relative;width: 984px;}
+.sbox{ padding:0 40px 20px;}
+.ddjs_address{height: 28px;line-height: 28px;margin-bottom: 5px;overflow: hidden; cursor:pointer;}
+.ddjs_address label{ color:#666;}
+.item-action {color: #999999;padding-left: 20px;}
+.item-selected{background-color: #FFF4D3; cursor:pointer;}
+.ddjs_address1{height: 28px;line-height: 28px;margin-bottom: 5px;overflow: hidden; cursor:pointer;}
+.ddjs_address1 label{ color:#666;}
+.item-action a{color: #005EA7;}
+.form-btn {height: 30px;padding-top: 4px;}
+.btn-submit{ background:url(images/bcshr.gif) no-repeat;float: left;font-size: 14px;height: 33px;line-height: 33px;margin-right: 10px;padding-left: 20px; color:#fff; font-weight:bold; width:135px;}
+.pay_newadd{ padding-left:12px;}
+.newadd_list{ overflow:hidden; padding:5px 0;}
+.newadd_list .label {color: #666666;float: left;height: 26px;line-height: 26px;margin-right: 5px;text-align: right;width: 85px;}
+.newadd_list .label em {color: #FF6600;font-family: sans-serif;margin-right: 5px;}
+em {font-style: normal;}
+.newadd_list .field {float: left;height: 26px;line-height: 26px;}
+.textbox {border: 1px solid #CCCCCC;font-family: Arial,"宋体",sans-serif;height: 16px;padding: 4px 3px;width: 138px;}
+.select-address select {height: 22px;margin: 2px 5px 0 0;}
+.full-address .textbox {width: 308px;}
+.add_phone em {color: #999999;padding: 0 20px 0 5px;}
+.form-tip {padding-left: 10px; color:#666;}

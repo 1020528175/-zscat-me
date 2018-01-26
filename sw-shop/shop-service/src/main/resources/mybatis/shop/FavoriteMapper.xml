@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.FavoriteDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.FavoriteDO">
+		select `id`,`addTime`,`deleteStatus`,`type`,`goodsid`,`storeid`,`userid` from t_favorite where id = #{value}
+	</select>
+	<select id="userTopicFavorite" resultType="com.zscat.shop.domain.TopicDO">
+		select g.img,g.id,g.title,g.clickhit from t_favorite f RIGHT JOIN t_topic g on f.goodsid=g.id
+		<where>
+
+			<if test="type != null and type != ''"> and f.type = #{type} </if>
+
+			<if test="userid != null and userid != ''"> and f.userid = #{userid} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="userFavorite" resultType="com.zscat.shop.domain.TGoodsDO">
+	select g.img,g.id,g.title,g.prices,g.id,g.collecthit from t_favorite f RIGHT JOIN t_goods g on f.goodsid=g.id
+		<where>
+
+			<if test="type != null and type != ''"> and f.type = #{type} </if>
+
+			<if test="userid != null and userid != ''"> and f.userid = #{userid} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	<select id="list" resultType="com.zscat.shop.domain.FavoriteDO">
+		select `id`,`addTime`,`deletestatus`,`type`,`goodsid`,`storeid`,`userid` from t_favorite
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="addtime != null and addtime != ''"> and addTime = #{addtime} </if>
+		  		  <if test="deletestatus != null and deletestatus != ''"> and deletestatus = #{deletestatus} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="goodsid != null and goodsid != ''"> and goodsid = #{goodsid} </if>
+		  		  <if test="storeid != null and storeid != ''"> and storeid = #{storeid} </if>
+		  		  <if test="userid != null and userid != ''"> and userid = #{userid} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_favorite
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="addtime != null and addtime != ''"> and addTime = #{addtime} </if>
+		  		  <if test="deletestatus != null and deletestatus != ''"> and deleteStatus = #{deletestatus} </if>
+		  		  <if test="type != null and type != ''"> and type = #{type} </if>
+		  		  <if test="goodsid != null and goodsid != ''"> and goodsid = #{goodsid} </if>
+		  		  <if test="storeid != null and storeid != ''"> and storeid = #{storeid} </if>
+		  		  <if test="userid != null and userid != ''"> and userid = #{userid} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.FavoriteDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_favorite
+		(
+			`addTime`, 
+			`deleteStatus`, 
+			`type`, 
+			`goodsid`, 
+			`storeid`, 
+			`userid`
+		)
+		values
+		(
+			#{addtime}, 
+			#{deletestatus}, 
+			#{type}, 
+			#{goodsid}, 
+			#{storeid}, 
+			#{userid}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.FavoriteDO">
+		update t_favorite 
+		<set>
+			<if test="addtime != null">`addTime` = #{addtime}, </if>
+			<if test="deletestatus != null">`deleteStatus` = #{deletestatus}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="goodsid != null">`goodsid` = #{goodsid}, </if>
+			<if test="storeid != null">`storeid` = #{storeid}, </if>
+			<if test="userid != null">`userid` = #{userid}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_favorite where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_favorite where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

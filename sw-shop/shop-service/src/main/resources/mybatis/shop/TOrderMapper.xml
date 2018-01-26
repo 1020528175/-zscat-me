@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.TOrderDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.TOrderDO">
+		select `id`,`totalprice`,`totalcount`,couponid,`ordersn`,`status`,`userid`,`createdate`,`paymentid`,`addressid`,`username`,`usercontent` from t_order where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.TOrderDO">
+		select `id`,`totalprice`,`totalcount`,couponid,`ordersn`,`status`,`userid`,`createdate`,`paymentid`,`addressid`,`username`,`usercontent` from t_order
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="totalprice != null and totalprice != ''"> and totalprice = #{totalprice} </if>
+		  		  <if test="totalcount != null and totalcount != ''"> and totalcount = #{totalcount} </if>
+		  		  <if test="ordersn != null and ordersn != ''"> and ordersn = #{ordersn} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="userid != null and userid != ''"> and userid = #{userid} </if>
+		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
+		  		  <if test="paymentid != null and paymentid != ''"> and paymentid = #{paymentid} </if>
+		  		  <if test="addressid != null and addressid != ''"> and addressid = #{addressid} </if>
+		  		  <if test="username != null and username != ''"> and username = #{username} </if>
+		  		  <if test="usercontent != null and usercontent != ''"> and usercontent = #{usercontent} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_order
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="totalprice != null and totalprice != ''"> and totalprice = #{totalprice} </if>
+		  		  <if test="totalcount != null and totalcount != ''"> and totalcount = #{totalcount} </if>
+		  		  <if test="ordersn != null and ordersn != ''"> and ordersn = #{ordersn} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="userid != null and userid != ''"> and userid = #{userid} </if>
+		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
+		  		  <if test="paymentid != null and paymentid != ''"> and paymentid = #{paymentid} </if>
+		  		  <if test="addressid != null and addressid != ''"> and addressid = #{addressid} </if>
+		  		  <if test="username != null and username != ''"> and username = #{username} </if>
+		  		  <if test="usercontent != null and usercontent != ''"> and usercontent = #{usercontent} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.TOrderDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_order
+		(
+			`totalprice`, 
+			`totalcount`, 
+			`ordersn`, 
+			`status`, 
+			`userid`, 
+			`createdate`, 
+			`paymentid`, 
+			`addressid`, 
+			`username`,
+			couponid,
+			`usercontent`
+		)
+		values
+		(
+			#{totalprice}, 
+			#{totalcount}, 
+			#{ordersn}, 
+			#{status}, 
+			#{userid}, 
+			#{createdate}, 
+			#{paymentid}, 
+			#{addressid}, 
+			#{username},
+			#{couponid},
+			#{usercontent}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.TOrderDO">
+		update t_order 
+		<set>
+			<if test="totalprice != null">`totalprice` = #{totalprice}, </if>
+			<if test="totalcount != null">`totalcount` = #{totalcount}, </if>
+			<if test="ordersn != null">`ordersn` = #{ordersn}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="userid != null">`userid` = #{userid}, </if>
+			<if test="createdate != null">`createdate` = #{createdate}, </if>
+			<if test="paymentid != null">`paymentid` = #{paymentid}, </if>
+			<if test="addressid != null">`addressid` = #{addressid}, </if>
+			<if test="username != null">`username` = #{username}, </if>
+			<if test="couponid != null">`couponid` = #{couponid}, </if>
+			<if test="usercontent != null">`usercontent` = #{usercontent}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_order where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_order where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

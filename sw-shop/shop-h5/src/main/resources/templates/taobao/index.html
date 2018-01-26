@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>首页</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <script src="/taobao/js/rem.js"></script>    
+    <link href="/taobao/iconfont/iconfont.css" rel="stylesheet"/>
+    <link href="/taobao/css/mui.min.css" rel="stylesheet"/>
+    <link href="/taobao/css/all.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/taobao/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/taobao/css/style.css"/>
+</head>
+<body>
+    <header class="mui-bar mui-bar-nav" id="header">
+        <div class="top-sch-box flex-col">
+            <div class="centerflex">
+                <i class="fdj iconfont icon-search"></i>
+                <div class="sch-txt">连衣裙就是你的女人味儿</div>
+                <span class="shaomiao"><i class="iconfont icon-saoma"></i></span>
+            </div>
+        </div>
+        <a class="btn" href="//person/taobao/msg">
+            <i class="iconfont icon-tixing"></i>
+        </a>
+        <a class="btn" href="//person/taobao/cartList">
+            <i class="iconfont icon-cart"></i>
+        </a>
+    </header>
+
+<div id="main" class="mui-clearfix">
+	 <!-- 搜索层 -->
+    <div class="pop-schwrap">
+        <div class="ui-scrollview">
+            <div class="mui-bar mui-bar-nav clone">
+                <a class="btn btn-back" href="javascript:;"></a>
+                <div class="top-sch-box flex-col">
+                    <div class="centerflex">
+                        <input class="sch-input mui-input-clear" type="text" name="" id="" placeholder="连衣裙就是你的女人味儿" />
+                    </div>
+                </div>
+                <a class="mui-btn mui-btn-primary sch-submit" href="search.html">搜索</a>
+            </div>
+            <div class="scroll-wrap">
+                <div class="mui-scroll">
+                    <div class="sch-cont">
+                        <div class="section ui-border-b">
+                            <div class="tit"><i class="iconfont icon-hot"></i>热门搜索</div>
+                            <div class="tags">
+                                <span class="tag">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span><span class="tag">睡衣</span>
+                                <span class="tag actice">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span><span class="tag">睡衣</span>
+                                <span class="tag">外套</span><span class="tag actice">连衣裙</span><span class="tag">运动鞋</span>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="tit"><i class="iconfont icon-time"></i>最近搜索</div>
+                            <div class="tags">
+                                <span class="tag">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span><span class="tag">睡衣</span>
+                                <span class="tag">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span><span class="tag">睡衣</span>
+                                <span class="tag">外套</span><span class="tag">连衣裙</span><span class="tag">运动鞋</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sch-clear">
+                        <a href="#"><i class="iconfont icon-shanchu"></i>清除搜索历史</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mui-content">
+        <div class="banner swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" th:each="banner:${bannerList}">
+                    <a th:href="@{'/taobao/bannerDetail/'+${banner.id}}">
+                        <img class="swiper-lazy"
+                             th:src="@{${banner.img}}" alt="">
+                    </a>
+                </div>
+
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="home-nav ui-box">
+            <div class="ui-flex flex-justify-sb">
+                <div th:each="brand:${brandList}">
+                    <a th:href="@{'/taobao/brandGoods/'+${brand.id}}"><img th:src="@{${brand.img}}" alt="" /></a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="home-qnav ui-box">
+            <div class="ui-flex flex-justify-sb">
+                <div><a href="http://www.591zq.com"><img src="/taobao/img/qnav1.png" class="ico" /><span class="name">我的店铺</span></a></div>
+                <div><a href="http://www.591zq.com"><img src="/taobao/img/qnav2.png" class="ico" /><span class="name">招商加盟</span></a></div>
+                <div><a href="http://www.591zq.com"><img src="/taobao/img/qnav3.png" class="ico" /><span class="name">我的喜欢</span></a></div>
+                <div><a href="http://www.591zq.com"><img src="/taobao/img/qnav4.png" class="ico" /><span class="name">猜你喜欢</span></a></div>
+            </div>
+        </div>
+
+        <div class="home-newgoods ui-box">
+            <img class="home-imgtit" src="/taobao/img/hometit1.jpg" alt="" />
+            <div class="list-type1 plist-puzzle">
+                <a class="b" href=""><img src="/taobao/uploads/t1.jpg" alt="" /></a>
+                <div class="s ui-flex-vt flex-justify-sb">
+                    <a th:each="xinpin:${xinpinList}" class="box" th:href="@{'/taobao/goodsDetail/'+${xinpin.id}}">
+                        <img class="figure" th:src="@{${xinpin.img}}" alt="" />
+                        </a>
+                </div>
+            </div>
+            <img class="home-imgtit" src="/taobao/img/hometit2.jpg" alt="" />
+            <div class="list-type2 ui-flex flex-justify-sb">
+                <a th:each="hit:${hitList}" class="box" th:href="@{'/taobao/goodsDetail/'+${hit.id}}">
+                    <img class="figure" th:src="@{${hit.img}}" alt="" />
+                    <span class="tit"  th:text="${hit.title}">情侣穿搭</span></a>
+
+            </div>
+        </div>
+
+        <div class="home-fashion ui-box ui-border-t">
+            <img class="home-imgtit" src="/taobao/img/hometit3.jpg" alt="" />
+            <a href=""><img class="db margin-b-s" src="/taobao/uploads/t4.jpg" width="100%" alt="" /></a>
+            <div class="fastion-plist mui-row">
+                <div class="mui-col-xs-4" th:each="com:${commList}">
+                    <a class="item" th:href="@{'/taobao/goodsDetail/'+${com.id}}">
+                        <img th:src="@{${com.img}}" width="165px" height="165px" alt="" class="figure" />
+                        <span class="tit" th:text="${com.title}">印花卫衣</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+            <!--优惠劵  -->
+            <div class="home-fashion ui-box ui-border-t">
+                <img class="home-imgtit" src="/taobao/img/hometit3.jpg" alt="" />
+                <div class="fastion-plist mui-row">
+                    <div class="mui-col-xs-4" th:each="coupon:${couponList}">
+                        <a class="item">
+                            <image th:if="${coupon.isReceive == 0}" src="/taobao/images/icon-coupon-index.png"></image>
+                            <image th:if="${coupon.isReceive == 1}" src="/taobao/images/icon-coupon-no.png"></image>
+                            <span class="tit" th:text="${coupon.couponName}">印花卫衣</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--专题  -->
+            <div class="home-fashion ui-box ui-border-t">
+                <img class="home-imgtit" src="/taobao/img/hometit3.jpg" alt="" />
+                <a href=""><img class="db margin-b-s" src="/taobao/uploads/t4.jpg" width="100%" alt="" /></a>
+                <div class="fastion-plist mui-row">
+                    <div class="mui-col-xs-4" th:each="topic:${topicList}">
+                        <a class="item">
+                            <img th:src="@{${topic.img}}" width="165px" height="165px" alt="" class="figure" />
+                            <span class="tit" th:text="${topic.title}">印花卫衣</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </div> <!--mui-content end-->
+</div>
+
+
+    <div th:replace="taobao/layout/footNav"></div>
+
+</body>
+<script type="text/javascript" src="/taobao/js/jquery-1.8.3.min.js" ></script>
+<script src="/taobao/js/fastclick.js"></script>
+<script src="/taobao/js/mui.min.js"></script>
+<script type="text/javascript" src="/taobao/js/hmt.js" ></script>
+<!--插件-->
+<link rel="stylesheet" href="/taobao/js/swiper/swiper.min.css">
+<script src="/taobao/js/swiper/swiper.jquery.min.js"></script>
+<!--插件-->
+<script src="/taobao/js/global.js"></script>
+<script >
+    $(function () {
+        var banner = new Swiper('.banner',{
+            autoplay: 5000,
+            pagination : '.swiper-pagination',
+            paginationClickable: true,
+            lazyLoading : true,
+            loop:true
+        });
+
+         mui('.pop-schwrap .sch-input').input();
+        var deceleration = mui.os.ios?0.003:0.0009;
+         mui('.pop-schwrap .scroll-wrap').scroll({
+                bounce: true,
+                indicators: true,
+                deceleration:deceleration
+        });
+        $('.top-sch-box .fdj,.top-sch-box .sch-txt,.pop-schwrap .btn-back').on('click',function () {
+            $('html,body').toggleClass('holding');
+            $('.pop-schwrap').toggleClass('on');
+            if($('.pop-schwrap').hasClass('on')) {;
+                $('.pop-schwrap .sch-input').focus();
+            }
+        });
+
+    });
+</script>
+</html>

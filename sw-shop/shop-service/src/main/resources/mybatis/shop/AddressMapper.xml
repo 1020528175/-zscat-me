@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.AddressDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.AddressDO">
+		select `id`,`userid`,`name`,`detail`,`mobile`,`isdefault` from t_address where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.AddressDO">
+		select `id`,`userid`,`name`,`detail`,`mobile`,`isdefault` from t_address
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="userid != null and userid != ''"> and userid = #{userid} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="detail != null and detail != ''"> and detail = #{detail} </if>
+		  		  <if test="mobile != null and mobile != ''"> and mobile = #{mobile} </if>
+		  		  <if test="isdefault != null and isdefault != ''"> and isdefault = #{isdefault} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_address
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="userid != null and userid != ''"> and userid = #{userid} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="detail != null and detail != ''"> and detail = #{detail} </if>
+		  		  <if test="mobile != null and mobile != ''"> and mobile = #{mobile} </if>
+		  		  <if test="isdefault != null and isdefault != ''"> and isdefault = #{isdefault} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.AddressDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_address
+		(
+			`userid`, 
+			`name`, 
+			`detail`, 
+			`mobile`, 
+			`isdefault`
+		)
+		values
+		(
+			#{userid}, 
+			#{name}, 
+			#{detail}, 
+			#{mobile}, 
+			#{isdefault}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.AddressDO">
+		update t_address 
+		<set>
+			<if test="userid != null">`userid` = #{userid}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="detail != null">`detail` = #{detail}, </if>
+			<if test="mobile != null">`mobile` = #{mobile}, </if>
+			<if test="isdefault != null">`isdefault` = #{isdefault}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_address where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_address where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

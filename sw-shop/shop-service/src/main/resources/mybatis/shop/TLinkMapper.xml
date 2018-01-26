@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.TLinkDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.TLinkDO">
+		select `id`,`linkName`,`linkUrl`,`orderNo` from t_link where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.TLinkDO">
+		select `id`,`linkName`,`linkUrl`,`orderNo` from t_link
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="linkname != null and linkname != ''"> and linkName = #{linkname} </if>
+		  		  <if test="linkurl != null and linkurl != ''"> and linkUrl = #{linkurl} </if>
+		  		  <if test="orderno != null and orderno != ''"> and orderNo = #{orderno} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_link
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="linkname != null and linkname != ''"> and linkName = #{linkname} </if>
+		  		  <if test="linkurl != null and linkurl != ''"> and linkUrl = #{linkurl} </if>
+		  		  <if test="orderno != null and orderno != ''"> and orderNo = #{orderno} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.TLinkDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_link
+		(
+			`linkName`, 
+			`linkUrl`, 
+			`orderNo`
+		)
+		values
+		(
+			#{linkname}, 
+			#{linkurl}, 
+			#{orderno}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.TLinkDO">
+		update t_link 
+		<set>
+			<if test="linkname != null">`linkName` = #{linkname}, </if>
+			<if test="linkurl != null">`linkUrl` = #{linkurl}, </if>
+			<if test="orderno != null">`orderNo` = #{orderno}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_link where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_link where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

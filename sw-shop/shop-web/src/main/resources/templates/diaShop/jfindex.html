@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/diaShop/css/common.css" rel="stylesheet" type="text/css"/>
+    <link href="/diaShop/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/diaShop/fonts/iconfont.css" rel="stylesheet" type="text/css"/>
+    <script src="/diaShop/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="/diaShop/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+    <script src="/diaShop/js/common_js.js" type="text/javascript"></script>
+    <script src="/diaShop/js/footer.js" type="text/javascript"></script>
+    <script src="/diaShop/js/lrtk.js" type="text/javascript"></script>
+    <title>积分商城</title>
+</head>
+
+<body>
+<!--顶部图层-->
+<div th:replace="diaShop/layout/mallHeader"></div>
+
+<!--广告-->
+<div style=" background-image:url(/diaShop/images/ADimg_02.png); background-position:center; background-repeat:no-repeat; height:400px;"></div>
+<!--团购样式-->
+<div class="Inside_pages">
+    <!--团购列表样式-->
+    <div class="group_buy  clearfix">
+        <div class="group_list">
+            <ul class="group_info" th:each="jf:${jfList}">
+                <li class="group_img"><a th:href="@{'/street/jfDetail/'+${jf.id}}" title="美国/Kirkland">
+                    <img th:src="@{${jf.img}}"></a></li>
+                <li class="group_name">
+                    <a th:href="@{'/street/jfDetail/'+${jf.id}}" th:text="${jf.title}">透真玻</a>
+                    <div class="group_content">松软蛋糕 棉花糖夹心 香甜软糯 松软可口</div>
+                    <div class="group_Price"><span>团购价：</span><i></i><em th:text="'网购￥'+${jf.prices}">45.00</em></div>
+                    <div class="Original_Price" th:text="'网购￥'+${jf.prices}"></div>
+                    <a href="#" th:onclick="'duihuan('+${jf.id}+')'" class="buy_botton">立即兑换</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div th:replace="diaShop/layout/mallFooter"></div>
+</body>
+</html>

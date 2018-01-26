@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.TGoodsClassDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.TGoodsClassDO">
+		select `id`,`name`,`pic`,`del_flag`,`title`,`pid`,`parent_ids` from t_goods_class where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.TGoodsClassDO">
+		select `id`,`name`,`pic`,`del_flag`,`title`,`pid`,`parent_ids` from t_goods_class
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="pic != null and pic != ''"> and pic = #{pic} </if>
+		  		  <if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="pid != null and pid != ''"> and pid = #{pid} </if>
+		  		  <if test="parentIds != null and parentIds != ''"> and parent_ids = #{parentIds} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_goods_class
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="pic != null and pic != ''"> and pic = #{pic} </if>
+		  		  <if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="pid != null and pid != ''"> and pid = #{pid} </if>
+		  		  <if test="parentIds != null and parentIds != ''"> and parent_ids = #{parentIds} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.TGoodsClassDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_goods_class
+		(
+			`name`, 
+			`pic`, 
+			`del_flag`, 
+			`title`, 
+			`pid`, 
+			`parent_ids`
+		)
+		values
+		(
+			#{name}, 
+			#{pic}, 
+			#{delFlag}, 
+			#{title}, 
+			#{pid}, 
+			#{parentIds}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.TGoodsClassDO">
+		update t_goods_class 
+		<set>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="pic != null">`pic` = #{pic}, </if>
+			<if test="delFlag != null">`del_flag` = #{delFlag}, </if>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="pid != null">`pid` = #{pid}, </if>
+			<if test="parentIds != null">`parent_ids` = #{parentIds}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_goods_class where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_goods_class where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

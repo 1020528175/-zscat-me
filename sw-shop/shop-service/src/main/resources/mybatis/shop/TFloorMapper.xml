@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.TFloorDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.TFloorDO">
+		select `id`,`name`,`typesort`,`parent_id`,`parent_ids`,`title`,`del_flag`,`advimg`,`advurl` from t_floor where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.TFloorDO">
+		select `id`,`name`,`typesort`,`parent_id`,`parent_ids`,`title`,`del_flag`,`advimg`,`advurl` from t_floor
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="typesort != null and typesort != ''"> and typesort = #{typesort} </if>
+		  		  <if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
+		  		  <if test="parentIds != null and parentIds != ''"> and parent_ids = #{parentIds} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
+		  		  <if test="advimg != null and advimg != ''"> and advimg = #{advimg} </if>
+		  		  <if test="advurl != null and advurl != ''"> and advurl = #{advurl} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_floor
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="typesort != null and typesort != ''"> and typesort = #{typesort} </if>
+		  		  <if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
+		  		  <if test="parentIds != null and parentIds != ''"> and parent_ids = #{parentIds} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
+		  		  <if test="advimg != null and advimg != ''"> and advimg = #{advimg} </if>
+		  		  <if test="advurl != null and advurl != ''"> and advurl = #{advurl} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.TFloorDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_floor
+		(
+			`name`, 
+			`typesort`, 
+			`parent_id`, 
+			`parent_ids`, 
+			`title`, 
+			`del_flag`, 
+			`advimg`, 
+			`advurl`
+		)
+		values
+		(
+			#{name}, 
+			#{typesort}, 
+			#{parentId}, 
+			#{parentIds}, 
+			#{title}, 
+			#{delFlag}, 
+			#{advimg}, 
+			#{advurl}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.TFloorDO">
+		update t_floor 
+		<set>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="typesort != null">`typesort` = #{typesort}, </if>
+			<if test="parentId != null">`parent_id` = #{parentId}, </if>
+			<if test="parentIds != null">`parent_ids` = #{parentIds}, </if>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="delFlag != null">`del_flag` = #{delFlag}, </if>
+			<if test="advimg != null">`advimg` = #{advimg}, </if>
+			<if test="advurl != null">`advurl` = #{advurl}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_floor where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_floor where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

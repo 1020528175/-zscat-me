@@ -1,0 +1,136 @@
+@charset "utf-8";
+/* CSS Document */
+body{border:none;font-size:12px;font-family:"宋体";margin:0px;padding:0px;line-height:24px; }
+ul,li,h1,h2,h3,h4,h5,h6,dl,dt,dd,img,form,p,input{margin:0px;padding:0px;list-style:none;border:0px;}
+
+/*table{border-collapse:collapse;}*/
+table td{ padding:0;}
+.left{float:left;}
+.right{float:right;}
+.overflow{overflow:hidden;zoom:1;}
+.cursor{cursor:pointer;}
+.clear{ clear:both; height:0; line-height:0; font-size:0;}
+.none{display:none;}
+.block{display:block;}
+.line-thro{text-decoration:line-through;}
+em{font-style:normal}
+.inline{display:inline;}
+.clearfix:after{content:"."; display:block; height:0; clear:both; visibility:hidden;}
+.clearfix{display:inline-block;}
+* html .clearfix{height:1%;}
+.clearfix{display:block;}
+.clearfix{zoom:1;}
+/*链接*/
+a{text-decoration:none;outline: none;hide-focus: expression(this.hideFocus = true);color:#4e4e4e;}
+a:hover{text-decoration:underline}
+
+/*颜色*/
+.green{ color:#629d1a;}
+.yellow{color:#ff9800;}
+.red{ color:#ff0202;}
+.cfff{ color:#fff;}
+.c333{ color:#333;}
+.cyl{ color:#ffff00}/*黄色字体*/
+.c005bab{ color:#005bab}/*蓝色字体*/
+.c3d69e7{ color:#3d69e7;}/*蓝色字体*/
+.cf00{ color:#f00;}
+.cf55e07{ color:#f55e07;}/*橙色字体*/
+.c2c6ca5{ color:#2c6ca5;}/*蓝色字体*/
+.c909190{ color:#909190;}/*灰色字体*/
+.c0b1c7a{ color:#0b1c7a;}/*蓝色字体*/
+.c999{color:#999;}
+.cccc{color:#ccc;}
+.ce4393c{color:#e4393c;}/*红色字体*/
+.c666{color:#666;}
+.f40{color:#f40;}
+/*字体*/
+.fontb{ font-weight:bold;}
+.fontnor{ font-weight:normal;}
+.font12{ font-size:12px;}
+.font13{ font-size:13px;}
+.font14{ font-size:14px;}
+.font16{ font-size:16px;}
+.font18{ font-size:18px;}
+.font20{ font-size:20px;}
+.font24{ font-size:24px;}
+/*边距*/
+.line18{ line-height:18px;} 
+.line25{ line-height:25px;} 
+.textint{ text-indent:2em;}
+.textint4{ text-indent:-66px; padding-left:66px;}
+
+.tcenter{ text-align:center;}
+.text_unline{ text-decoration:line-through;}
+.text_line{ text-decoration:underline;}
+.text_r{ text-align:right;}
+.linetop{ border-top:1px dashed #ccc;}
+.marginauto{ margin:0 auto;}
+.ml2{ margin-left:2px;}
+.ml5{ margin-left:5px;}
+.ml10{ margin-left:10px;}
+.ml15{ margin-left:15px;}
+.ml20{ margin-left:20px;}
+.ml25{ margin-left:25px;}
+.mt5{ margin-top:5px;}
+.mt3{margin-top:3px;}
+.mt10{ margin-top:10px;}
+.mt15{ margin-top:15px;}
+.ml100{ margin-left:100px;}
+.ml80{ margin-left:80px;}
+.ml60{ margin-left:60px;}
+
+.ml150{ margin-left:150px;}
+.mt50{margin-top:50px;}
+.ml50{ margin-left:50px;}
+.ml60{ margin-left:60px;}
+.ml65{margin-left:65px;}
+
+
+.mt25{ margin-top:25px;}
+.mt30{ margin-top:30px;}
+.mt40{ margin-top:40px;}
+.mt20{ margin-top:20px;}
+.mr20{ margin-right:20px;}
+.mr10{ margin-right:10px;}
+.mr5{ margin-right:5px;}
+.mr30{ margin-right:30px;}
+.mr55{ margin-right:55px;}
+.mb10{ margin-bottom:10px;}
+.mb20{ margin-bottom:20px;}
+.pt10{ padding-top:10px;}
+.pt20{ padding-top:20px;}
+.pt5{ padding-top:5px;}
+.pb10{ padding-bottom:10px;}
+.pr50{ padding-right:50px;}
+.pr60{ padding-right:60px;}
+.pr10{ padding-right:10px;}
+.pl10{ padding-left:10px;}
+.pl15{ padding-left:15px;}
+.pl25{ padding-left:25px;}
+.pl50{ padding-left:50px;}
+.pb30{ padding-bottom:30px;}
+.w40{ width:40px;}
+.w85{ width:85px;}
+.w165{ width:165px;}
+.wid235{width:235px;}
+.wid265{width:265px;}
+
+.pos_r{ position:relative;}
+.pos_a{position:absolute;}
+
+.wid20{width:20px;}
+.wid50{width:50px;}
+.wid120{width:120px;}
+.wid200{width:200px;}
+.wid270{width:270px;}
+.wid575{width:575px;}
+
+.pagebox{ text-align:right;line-height:28px;margin-top:10px;}
+.pagebox a{vertical-align:middle;margin-left:5px;}
+a.page_syy{background:url(images/page_syy.gif) no-repeat;width:66px;height:28px; display:inline-block;}
+a.page_xyy{background:url(images/page_xyy.gif) no-repeat;width:66px;height:28px; display:inline-block;}
+a.page_wy{background:url(images/page_wy.gif) no-repeat;width:48px;height:28px; display:inline-block;}
+a.page_ym{ background:url(images/page_bj.gif) no-repeat;width:30px;height:28px;line-height:28px; text-align:center;font-size:14px;color:#000; text-decoration:none; display:inline-block;}
+a.page_ym:hover{ background:none;color:#f40; font-weight:bold;}
+a.page_ym.fyhover{ background:none;color:#f40; font-weight:bold;}
+.page_inp{ background:url(images/page_inp.gif) no-repeat;width:36px;height:28px;padding:0 2px; vertical-align:middle;}

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.TCartDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.TCartDO">
+		select `id`,`goodsid`,`userid`,`goodsname`,`price`,`count`,`img`,storeid from t_cart where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.TCartDO">
+		select `id`,`goodsid`,`userid`,`goodsname`,`price`,`count`,`img`,storeid from t_cart
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="goodsid != null and goodsid != ''"> and goodsid = #{goodsid} </if>
+					<if test="storeid != null and storeid != ''"> and storeid = #{storeid} </if>
+		  		  <if test="userid != null and userid != ''"> and userid = #{userid} </if>
+		  		  <if test="goodsname != null and goodsname != ''"> and goodsname = #{goodsname} </if>
+		  		  <if test="price != null and price != ''"> and price = #{price} </if>
+		  		  <if test="count != null and count != ''"> and count = #{count} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="list1" resultType="com.zscat.shop.domain.TCartDO">
+		select `id`,`goodsid`,`userid`,`goodsname`,`price`,`count`,`img`,storeid ,(count*price) totalprice from t_cart
+		<where>
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="goodsid != null and goodsid != ''"> and goodsid = #{goodsid} </if>
+			<if test="storeid != null and storeid != ''"> and storeid = #{storeid} </if>
+			<if test="userid != null and userid != ''"> and userid = #{userid} </if>
+			<if test="goodsname != null and goodsname != ''"> and goodsname = #{goodsname} </if>
+			<if test="price != null and price != ''"> and price = #{price} </if>
+			<if test="count != null and count != ''"> and count = #{count} </if>
+			<if test="img != null and img != ''"> and img = #{img} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	<select id="countprice" resultType="String">
+		select SUM(count*price) from t_cart
+		<where>
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="goodsid != null and goodsid != ''"> and goodsid = #{goodsid} </if>
+			<if test="storeid != null and storeid != ''"> and storeid = #{storeid} </if>
+			<if test="userid != null and userid != ''"> and userid = #{userid} </if>
+			<if test="goodsname != null and goodsname != ''"> and goodsname = #{goodsname} </if>
+			<if test="price != null and price != ''"> and price = #{price} </if>
+			<if test="count != null and count != ''"> and count = #{count} </if>
+			<if test="img != null and img != ''"> and img = #{img} </if>
+		</where>
+	</select>
+ 	<select id="count" resultType="int">
+		select count(*) from t_cart
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="goodsid != null and goodsid != ''"> and goodsid = #{goodsid} </if>
+			 <if test="storeid != null and storeid != ''"> and storeid = #{storeid} </if>
+		  		  <if test="userid != null and userid != ''"> and userid = #{userid} </if>
+		  		  <if test="goodsname != null and goodsname != ''"> and goodsname = #{goodsname} </if>
+		  		  <if test="price != null and price != ''"> and price = #{price} </if>
+		  		  <if test="count != null and count != ''"> and count = #{count} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.TCartDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_cart
+		(
+			`goodsid`, 
+			`userid`, 
+			`goodsname`, 
+			`price`, 
+			`count`,
+			storeid,
+			`img`
+		)
+		values
+		(
+			#{goodsid}, 
+			#{userid}, 
+			#{goodsname}, 
+			#{price}, 
+			#{count},
+			#{storeid},
+			#{img}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.TCartDO">
+		update t_cart 
+		<set>
+			<if test="storeid != null">`storeid` = #{storeid}, </if>
+			<if test="goodsid != null">`goodsid` = #{goodsid}, </if>
+			<if test="userid != null">`userid` = #{userid}, </if>
+			<if test="goodsname != null">`goodsname` = #{goodsname}, </if>
+			<if test="price != null">`price` = #{price}, </if>
+			<if test="count != null">`count` = #{count}, </if>
+			<if test="img != null">`img` = #{img}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_cart where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_cart where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	<select id="batchGet" resultType="com.zscat.shop.domain.TCartDO">
+		select * from t_cart where id in
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</select>
+</mapper>

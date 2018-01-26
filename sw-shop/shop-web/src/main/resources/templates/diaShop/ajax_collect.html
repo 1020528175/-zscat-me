@@ -1,0 +1,40 @@
+<!--右侧样式-->
+
+<div class="user_title_name"><span>用户收藏</span></div>
+<div class="r_user_style">
+    <div class="collect">
+        <div class="Quantity"><i class="iconfont icon-favor"></i>收藏量：12条 | 最多收藏100条</div>
+    </div>
+    <div class="collect_list">
+        <ul>
+            <li class="collect_p" th:each="com:${collectList}">
+                <em class="iconfont icon-close2 delete"></em>
+                <div class="collect_info">
+                    <div class="img_link"><a th:href="@{'/diaShop/goodsDetail/'+${com.id}}">
+                        <img th:src="@{${com.img}}"></a></div>
+                    <dl class="xinxi">
+                        <dt><a th:href="@{'/diaShop/goodsDetail/'+${com.id}}" th:text="${com.title}">原装【贝段 900克*2</a></dt>
+                        <dd><span class="Price"><b th:text="'￥'+${com.prices}"></b></span><span class="collect_Amount" th:text="${com.collecthit}"><I
+                                class="iconfont icon-shoucang"></I></span></dd>
+                    </dl>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <div class="Paging">
+        <div class="Pagination">
+            <a href="#">首页</a>
+            <a href="#" class="pn-prev disabled">&lt;上一页</a>
+            <a href="#" class="on">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">下一页&gt;</a>
+            <a href="#">尾页</a>
+        </div>
+    </div>
+</div>
+
+
+

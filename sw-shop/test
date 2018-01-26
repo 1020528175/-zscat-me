@@ -1,0 +1,34 @@
+rabbitmq 安装
+http://blog.csdn.net/hzw19920329/article/details/53156015
+rabbitmq 提供者
+         subject.login(token);
+            RabbitMsg msg = new RabbitMsg();
+            Map map =new HashMap();
+            map.put("userid",MemberUtils.getSessionLoginUser().getId());
+            map.put("count",Constan.LOGIN.getCode());
+            map.put("msg",Constan.LOGIN.getMsg());
+            msg.setMap(map);
+            msg.setType("addjifen"); // 登录的时候添加积分
+            sender.send(msg);
+
+rabbitmq 消费者
+switch (btype) {
+            case "addjifen": //添加积分
+                if (map.get("userid")!=null){
+                    JifendataDO jifendata = new JifendataDO();
+                    jifendata.setAddcount((Integer) map.get("count"));
+                    jifendata.setSource((String) map.get("msg"));
+                    jifendata.setCreatedate(new Date());
+                    jifendata.setUserid((Long) map.get("userid"));
+                    jifendataService.save(jifendata);
+                    TMemberDO m = tMemberService.get((Long) map.get("userid"));
+                    m.setJifen(m.getJifen()+(Integer) map.get("count"));
+                    tMemberService.update(m);
+                }
+                break;
+
+            default: {
+                System.out.println("unknown btype="+btype);
+
+            }
+        }

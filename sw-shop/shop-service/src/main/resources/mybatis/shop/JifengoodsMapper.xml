@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.JifengoodsDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.JifengoodsDO">
+		select `id`,`title`,`tag`,`remark`,`summary`,`clickHit`,`typeid`,`img`,`classid`,`prices`,`imgmore`,`create_date`,`replyhit`,`iscom`,`storeid`,`days` from t_jifengoods where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.JifengoodsDO">
+		select `id`,`title`,`tag`,`remark`,`summary`,`clickHit`,`typeid`,`img`,`classid`,`prices`,`imgmore`,`create_date`,`replyhit`,`iscom`,`storeid`,`days` from t_jifengoods
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="tag != null and tag != ''"> and tag = #{tag} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="summary != null and summary != ''"> and summary = #{summary} </if>
+		  		  <if test="clickhit != null and clickhit != ''"> and clickHit = #{clickhit} </if>
+		  		  <if test="typeid != null and typeid != ''"> and typeid = #{typeid} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		  <if test="classid != null and classid != ''"> and classid = #{classid} </if>
+		  		  <if test="prices != null and prices != ''"> and prices = #{prices} </if>
+		  		  <if test="imgmore != null and imgmore != ''"> and imgmore = #{imgmore} </if>
+		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
+		  		  <if test="replyhit != null and replyhit != ''"> and replyhit = #{replyhit} </if>
+		  		  <if test="iscom != null and iscom != ''"> and iscom = #{iscom} </if>
+		  		  <if test="storeid != null and storeid != ''"> and storeid = #{storeid} </if>
+		  		  <if test="days != null and days != ''"> and days = #{days} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_jifengoods
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="tag != null and tag != ''"> and tag = #{tag} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="summary != null and summary != ''"> and summary = #{summary} </if>
+		  		  <if test="clickhit != null and clickhit != ''"> and clickHit = #{clickhit} </if>
+		  		  <if test="typeid != null and typeid != ''"> and typeid = #{typeid} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		  <if test="classid != null and classid != ''"> and classid = #{classid} </if>
+		  		  <if test="prices != null and prices != ''"> and prices = #{prices} </if>
+		  		  <if test="imgmore != null and imgmore != ''"> and imgmore = #{imgmore} </if>
+		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
+		  		  <if test="replyhit != null and replyhit != ''"> and replyhit = #{replyhit} </if>
+		  		  <if test="iscom != null and iscom != ''"> and iscom = #{iscom} </if>
+		  		  <if test="storeid != null and storeid != ''"> and storeid = #{storeid} </if>
+		  		  <if test="days != null and days != ''"> and days = #{days} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.JifengoodsDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_jifengoods
+		(
+			`title`, 
+			`tag`, 
+			`remark`, 
+			`summary`, 
+			`clickHit`, 
+			`typeid`, 
+			`img`, 
+			`classid`, 
+			`prices`, 
+			`imgmore`, 
+			`create_date`, 
+			`replyhit`, 
+			`iscom`, 
+			`storeid`, 
+			`days`
+		)
+		values
+		(
+			#{title}, 
+			#{tag}, 
+			#{remark}, 
+			#{summary}, 
+			#{clickhit}, 
+			#{typeid}, 
+			#{img}, 
+			#{classid}, 
+			#{prices}, 
+			#{imgmore}, 
+			#{createDate}, 
+			#{replyhit}, 
+			#{iscom}, 
+			#{storeid}, 
+			#{days}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.JifengoodsDO">
+		update t_jifengoods 
+		<set>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="tag != null">`tag` = #{tag}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="summary != null">`summary` = #{summary}, </if>
+			<if test="clickhit != null">`clickHit` = #{clickhit}, </if>
+			<if test="typeid != null">`typeid` = #{typeid}, </if>
+			<if test="img != null">`img` = #{img}, </if>
+			<if test="classid != null">`classid` = #{classid}, </if>
+			<if test="prices != null">`prices` = #{prices}, </if>
+			<if test="imgmore != null">`imgmore` = #{imgmore}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="replyhit != null">`replyhit` = #{replyhit}, </if>
+			<if test="iscom != null">`iscom` = #{iscom}, </if>
+			<if test="storeid != null">`storeid` = #{storeid}, </if>
+			<if test="days != null">`days` = #{days}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_jifengoods where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_jifengoods where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

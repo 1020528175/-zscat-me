@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.TCommentDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.TCommentDO">
+		select `id`,`userIp`,`blogId`,`content`,`commentDate`,`state`,`blogger_id`,`title`,`blogger` from t_comment where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.TCommentDO">
+		select `id`,`userIp`,`blogId`,`content`,`commentDate`,`state`,`blogger_id`,`title`,`blogger` from t_comment
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="userip != null and userip != ''"> and userIp = #{userip} </if>
+		  		  <if test="blogid != null and blogid != ''"> and blogId = #{blogid} </if>
+		  		  <if test="content != null and content != ''"> and content = #{content} </if>
+		  		  <if test="commentdate != null and commentdate != ''"> and commentDate = #{commentdate} </if>
+		  		  <if test="state != null and state != ''"> and state = #{state} </if>
+		  		  <if test="bloggerId != null and bloggerId != ''"> and blogger_id = #{bloggerId} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="blogger != null and blogger != ''"> and blogger = #{blogger} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_comment
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="userip != null and userip != ''"> and userIp = #{userip} </if>
+		  		  <if test="blogid != null and blogid != ''"> and blogId = #{blogid} </if>
+		  		  <if test="content != null and content != ''"> and content = #{content} </if>
+		  		  <if test="commentdate != null and commentdate != ''"> and commentDate = #{commentdate} </if>
+		  		  <if test="state != null and state != ''"> and state = #{state} </if>
+		  		  <if test="bloggerId != null and bloggerId != ''"> and blogger_id = #{bloggerId} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="blogger != null and blogger != ''"> and blogger = #{blogger} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.TCommentDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_comment
+		(
+			`userIp`, 
+			`blogId`, 
+			`content`, 
+			`commentDate`, 
+			`state`, 
+			`blogger_id`, 
+			`title`, 
+			`blogger`
+		)
+		values
+		(
+			#{userip}, 
+			#{blogid}, 
+			#{content}, 
+			#{commentdate}, 
+			#{state}, 
+			#{bloggerId}, 
+			#{title}, 
+			#{blogger}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.TCommentDO">
+		update t_comment 
+		<set>
+			<if test="userip != null">`userIp` = #{userip}, </if>
+			<if test="blogid != null">`blogId` = #{blogid}, </if>
+			<if test="content != null">`content` = #{content}, </if>
+			<if test="commentdate != null">`commentDate` = #{commentdate}, </if>
+			<if test="state != null">`state` = #{state}, </if>
+			<if test="bloggerId != null">`blogger_id` = #{bloggerId}, </if>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="blogger != null">`blogger` = #{blogger}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_comment where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_comment where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

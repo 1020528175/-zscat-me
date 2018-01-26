@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.CouponDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.CouponDO">
+		select `id`,`addTime`,`status`,`amount`,`begin_time`,`coupon_count`,`coupon_end_time`,`coupon_name`,`coupon_order_amount`,`pic`,`is_receive`,`type` from t_coupon where id = #{value}
+	</select>
+	<select id="getUserCoupon" resultType="com.zscat.shop.domain.CouponDO">
+select t.`id`,`addTime`,`status`,`amount`,`begin_time`,`coupon_count`,`coupon_end_time`,`coupon_name`,`coupon_order_amount`,`pic`,`is_receive`,`type` from t_coupon t LEFT JOIN t_user_coupon up on t.id=up.coupon_id  where up.user_id=#{id} <if test="status != null and status != ''"> and t.status = #{status} </if>
+
+	</select>
+	<select id="list" resultType="com.zscat.shop.domain.CouponDO">
+		select `id`,`addTime`,`status`,`amount`,`begin_time`,`coupon_count`,`coupon_end_time`,`coupon_name`,`coupon_order_amount`,`pic`,`is_receive`,`type` from t_coupon
+		<where>
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="addtime != null and addtime != ''"> and addTime = #{addtime} </if>
+			<if test="status != null and status != ''"> and status = #{status} </if>
+			<if test="amount != null and amount != ''"> and amount = #{amount} </if>
+			<if test="beginTime != null and beginTime != ''"> and begin_time = #{beginTime} </if>
+			<if test="couponCount != null and couponCount != ''"> and coupon_count = #{couponCount} </if>
+			<if test="couponEndTime != null and couponEndTime != ''"> and coupon_end_time = #{couponEndTime} </if>
+			<if test="couponName != null and couponName != ''"> and coupon_name = #{couponName} </if>
+			<if test="couponOrderAmount != null and couponOrderAmount != ''"> and coupon_order_amount = #{couponOrderAmount} </if>
+			<if test="pic != null and pic != ''"> and pic = #{pic} </if>
+			<if test="isReceive != null and isReceive != ''"> and is_receive = #{isReceive} </if>
+			<if test="type != null and type != ''"> and type = #{type} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from t_coupon
+		<where>
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="addtime != null and addtime != ''"> and addTime = #{addtime} </if>
+			<if test="status != null and status != ''"> and status = #{status} </if>
+			<if test="amount != null and amount != ''"> and amount = #{amount} </if>
+			<if test="beginTime != null and beginTime != ''"> and begin_time = #{beginTime} </if>
+			<if test="couponCount != null and couponCount != ''"> and coupon_count = #{couponCount} </if>
+			<if test="couponEndTime != null and couponEndTime != ''"> and coupon_end_time = #{couponEndTime} </if>
+			<if test="couponName != null and couponName != ''"> and coupon_name = #{couponName} </if>
+			<if test="couponOrderAmount != null and couponOrderAmount != ''"> and coupon_order_amount = #{couponOrderAmount} </if>
+			<if test="pic != null and pic != ''"> and pic = #{pic} </if>
+			<if test="isReceive != null and isReceive != ''"> and is_receive = #{isReceive} </if>
+			<if test="type != null and type != ''"> and type = #{type} </if>
+		</where>
+	</select>
+
+	<insert id="save" parameterType="com.zscat.shop.domain.CouponDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_coupon
+		(
+		`addTime`,
+		`status`,
+		`amount`,
+		`begin_time`,
+		`coupon_count`,
+		`coupon_end_time`,
+		`coupon_name`,
+		`coupon_order_amount`,
+		`pic`,
+		`is_receive`,
+		`type`
+		)
+		values
+		(
+		#{addtime},
+		#{status},
+		#{amount},
+		#{beginTime},
+		#{couponCount},
+		#{couponEndTime},
+		#{couponName},
+		#{couponOrderAmount},
+		#{pic},
+		#{isReceive},
+		#{type}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.zscat.shop.domain.CouponDO">
+		update t_coupon
+		<set>
+			<if test="addtime != null">`addTime` = #{addtime}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="amount != null">`amount` = #{amount}, </if>
+			<if test="beginTime != null">`begin_time` = #{beginTime}, </if>
+			<if test="couponCount != null">`coupon_count` = #{couponCount}, </if>
+			<if test="couponEndTime != null">`coupon_end_time` = #{couponEndTime}, </if>
+			<if test="couponName != null">`coupon_name` = #{couponName}, </if>
+			<if test="couponOrderAmount != null">`coupon_order_amount` = #{couponOrderAmount}, </if>
+			<if test="pic != null">`pic` = #{pic}, </if>
+			<if test="isReceive != null">`is_receive` = #{isReceive}, </if>
+			<if test="type != null">`type` = #{type}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<delete id="remove">
+		delete from t_coupon where id = #{value}
+	</delete>
+	<delete id="removeUserCoupon">
+		delete from t_user_coupon where user_id = #{userid} and coupon_id =#{couponid}
+	</delete>
+	<delete id="batchRemove">
+		delete from t_coupon where id in
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

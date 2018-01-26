@@ -1,0 +1,106 @@
+<!--右侧样式-->
+<div class="right_style">
+    <div class="user_title_name"><span>地址管理</span></div>
+    <div class="frame user_address clearfix">
+        <!--地址列表-->
+        <div class="Address_List clearfix">
+            <!--地址类表-->
+            <ul class="Address_info" th:each="uj:${addressList}">
+                <div class="address_title"><a href="#" class="modify" th:onclick="'editAddress('+${uj.id}+')'" title="修改信息"></a>地址信息 <a
+                        href="javascript:over('0')" th:onclick="'delAddress('+${uj.id}+')'" class="delete "><i class="iconfont icon-close"></i></a></div>
+                <li th:text="${uj.name}">张婷婷</li>
+                <li th:text="${uj.detail}">四川成都武侯区簇景横街210号3栋1单元307号。</li>
+                <li th:text="${uj.mobile}">182938596861</li>
+                <li>610000</li>
+            </ul>
+            
+        </div>
+        <!--下拉选择地址样式-->
+        <script src="/diaShop/Threelinkage/kit.js"></script>
+        <!--[if IE]>
+        <script src="/diaShop/Threelinkage/ieFix.js"></script>
+        <![endif]-->
+        <!--		<script type="text/javascript">
+                    var _gaq = _gaq || [];
+                    _gaq.push(['_setAccount', 'UA-30210234-1']);
+                    _gaq.push(['_trackPageview']);
+                    (function() {
+                        var ga = document.createElement('script');
+                        ga.type = 'text/javascript';
+                        ga.async = true;
+                        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(ga, s);
+                    })();
+        
+                </script>-->
+        <script src="/diaShop/Threelinkage/dom.js"></script>
+        <script src="/diaShop/Threelinkage/event.js"></script>
+        <script src="/diaShop/Threelinkage/math.js"></script>
+        <script src="/diaShop/Threelinkage/TreeDict.js"></script>
+        <script src="/diaShop/Threelinkage/form.js"></script>
+        <script src="/diaShop/Threelinkage/combobox.js"></script>
+        <script src="/diaShop/Threelinkage/suggestselect.js"></script>
+        <script src="/diaShop/Threelinkage/list.js"></script>
+        <!--json data-->
+        <script src="/diaShop/Threelinkage/json-data.js" charset="utf-8"></script>
+        <link href="/diaShop/Threelinkage/linkage.css" rel="stylesheet" type="text/css"/>
+
+        <form action="" method="post">
+            <div class="Add_Addresss">
+                <div class="title_name"><i></i>添加地址</div>
+                <table>
+                    <tr>
+                        <td class="label_name">收货地址</td>
+                        <td colspan="3" class="select">
+                            <span class="select_adderss"><label> 详细地址 </label>
+                                <input id="detail" type="text" class="Add-text"/></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label_name">收件人姓名</td>
+                        <td><input id="name" type="text" class="Add-text"/><i>（必填）</i></td>
+                        <td class="label_name">手&nbsp;&nbsp;机</td>
+                        <td><input id="mobile" type="text" class="Add-text"/><i>（必填）</i></td>
+                    </tr>
+
+                    <tr>
+                        <td class="label_name"></td>
+                        <td></td>
+                        <td class="label_name"></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="address_Note"><span>注：</span>只能添加5个收货地址信息。请乎用假名填写地址，如造成损失由收货人自己承担。</div>
+                <div class="btn"><input name="1" type="button" onclick="saveAddress()" value="添加地址" class="Add_btn"/></div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function saveAddress(){
+        var name=$("#name").val();
+        var mobile=$("#mobile").val();
+        var detail=$("#detail").val();
+        $.ajax({
+            type: "post",
+            url: '/person/diaShop/saveAddress',
+            data: {
+                name:name,
+                mobile:mobile,
+                detail:detail},
+            dataType: "json",
+            success:function(data) {
+                if(data.code==0){
+                        layer.msg("添加地址成功!",2, 8);
+                        window.location.href = "/person/diaShop/my";
+                }else if(data.success=='login'){
+                    window.location.href = "/diaShop/login"
+                }
+            }
+        });
+    }
+</script>

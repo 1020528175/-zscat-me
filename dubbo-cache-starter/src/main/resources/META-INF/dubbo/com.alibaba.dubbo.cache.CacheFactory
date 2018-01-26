@@ -1,0 +1,3 @@
+redis=com.zscat.dubbo.cache.redis.RedisCacheFactory
+ehcache=com.zscat.dubbo.cache.ehcache.EhCacheFactory
+mixcache=com.zscat.dubbo.cache.mixcache.MixCacheFactory

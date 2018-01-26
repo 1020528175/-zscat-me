@@ -1,0 +1,36 @@
+server:
+  port: 9991
+  context-path: /
+  tomcat:
+    uri-encoding: utf-8
+spring:
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  profiles: 
+    active: dev
+  http:
+    multipart:
+      max-file-size: 30Mb
+      max-request-size: 30Mb
+  dubbo:
+    application:
+      name: shopServer
+    registry:
+      address: zookeeper://127.0.0.1:2181
+    scan: com.zscat.shop.service
+    protocol:
+      name: dubbo
+      port: 20885
+mybatis: 
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mybatis/shop/*Mapper.xml
+  typeAliasesPackage: com.zscat.shop.domain
+
+##七牛云的key
+qiniu:
+  accessKey: AMJ_CEvgX1eUYtSwC1ioo_WnmR73ufqYYmwrrPDV
+  secretKey: 1iUDYRKdibiVP-WZLrGoErtdWWCqYWXjKUbQtAYQ
+  bucketName:  j5shop
+  basePath: http://p0bt2oaom.bkt.clouddn.com/

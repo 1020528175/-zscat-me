@@ -1,0 +1,67 @@
+server:
+  port: 9994
+  context-path: /
+  tomcat:
+    uri-encoding: utf-8
+spring:
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  profiles: 
+    active: dev
+  http:
+    multipart:
+      max-file-size: 30Mb
+      max-request-size: 30Mb
+  devtools:
+    restart:
+      enabled: true
+  dubbo:
+    application:
+      name: shopAdmin
+    registry:
+      address: zookeeper://127.0.0.1:2181
+    scan: com.zscat
+mybatis: 
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mybatis/**/*Mapper.xml
+  typeAliasesPackage: com.zscat.*.domain
+
+wechat:
+  miniapp:
+    appid: wx15d4269d3210863d
+    secret: d60d341206e2d07f8c4c2bb29580b0c6
+    token: weixin
+    aesKey: 111
+    msgDataFormat: JSON
+
+#公众号 APP_ID(IFapp)
+wx:
+ ifapp:
+  appid:  wxa712745e4f8b0197
+#公众号 APP_SECRET
+  appsecret: 5d3e82774e778383cedca8d99277e48c
+#公众号 TOKEN
+  token: weixin
+#公众号 AES_KEY
+  aeskey: fQodyTvoYXbhz5knfCJV9MJCAo2W83RU42GXgfxe6vG
+#微信支付商户号
+  partener-id: 1484302592
+#微信支付平台商户API密钥
+  partener-key: PRjDWS1RjtVbdQxh2HK4OYNAyQ778gg6
+  sponsor-pay-notify: https://h5dev.if-chat.com/wx/pay/sponsor/notify
+
+#公众号域名
+  page-domain: https://h5dev.if-chat.com
+
+##七牛云的key
+
+qiniu:
+  accessKey: AMJ_CEvgX1eUYtSwC1ioo_WnmR73ufqYYmwrrPDV
+  secretKey: 1iUDYRKdibiVP-WZLrGoErtdWWCqYWXjKUbQtAYQ
+  bucketName:  j5shop
+  basePath: http://p0bt2oaom.bkt.clouddn.com/

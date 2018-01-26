@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.TBrandDao">
+	<select id="getBrandByFloorid" resultType="com.zscat.shop.domain.TBrandDO">
+		SELECT * from t_brand p LEFT JOIN t_floor_brand f
+		on p.id=f.brandid where f.floorid =#{id}
+
+	</select>
+
+	<select id="get" resultType="com.zscat.shop.domain.TBrandDO">
+		select `id`,`name`,`stat`,`img` from t_brand where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.TBrandDO">
+		select `id`,`name`,`stat`,`img` from t_brand
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="stat != null and stat != ''"> and stat = #{stat} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_brand
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="stat != null and stat != ''"> and stat = #{stat} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.TBrandDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_brand
+		(
+			`name`, 
+			`stat`, 
+			`img`
+		)
+		values
+		(
+			#{name}, 
+			#{stat}, 
+			#{img}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.TBrandDO">
+		update t_brand 
+		<set>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="stat != null">`stat` = #{stat}, </if>
+			<if test="img != null">`img` = #{img}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_brand where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_brand where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zscat.shop.dao.TOrderLogDao">
+
+	<select id="get" resultType="com.zscat.shop.domain.TOrderLogDO">
+		select `id`,`order_id`,`order_state`,`change_state`,`state_info`,`create_time`,`operator` from t_order_log where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.zscat.shop.domain.TOrderLogDO">
+		select `id`,`order_id`,`order_state`,`change_state`,`state_info`,`create_time`,`operator` from t_order_log
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="orderId != null and orderId != ''"> and order_id = #{orderId} </if>
+		  		  <if test="orderState != null and orderState != ''"> and order_state = #{orderState} </if>
+		  		  <if test="changeState != null and changeState != ''"> and change_state = #{changeState} </if>
+		  		  <if test="stateInfo != null and stateInfo != ''"> and state_info = #{stateInfo} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_order_log
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="orderId != null and orderId != ''"> and order_id = #{orderId} </if>
+		  		  <if test="orderState != null and orderState != ''"> and order_state = #{orderState} </if>
+		  		  <if test="changeState != null and changeState != ''"> and change_state = #{changeState} </if>
+		  		  <if test="stateInfo != null and stateInfo != ''"> and state_info = #{stateInfo} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.zscat.shop.domain.TOrderLogDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_order_log
+		(
+			`order_id`, 
+			`order_state`, 
+			`change_state`, 
+			`state_info`, 
+			`create_time`, 
+			`operator`
+		)
+		values
+		(
+			#{orderId}, 
+			#{orderState}, 
+			#{changeState}, 
+			#{stateInfo}, 
+			#{createTime}, 
+			#{operator}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zscat.shop.domain.TOrderLogDO">
+		update t_order_log 
+		<set>
+			<if test="orderId != null">`order_id` = #{orderId}, </if>
+			<if test="orderState != null">`order_state` = #{orderState}, </if>
+			<if test="changeState != null">`change_state` = #{changeState}, </if>
+			<if test="stateInfo != null">`state_info` = #{stateInfo}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="operator != null">`operator` = #{operator}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_order_log where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_order_log where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
