@@ -174,3 +174,8 @@ uni-app 是一个使用 Vue.js 开发跨平台应用的前端框架，开发者�
 > cloud框架和组件来源：https://gitee.com/owenwangwen/open-capacity-platform
  https://gitee.com/zlt2000/microservices-platform
 > 业务逻辑来源：https://github.com/shenzhuan/mallplus https://gitee.com/macrozheng/mall
+
+许可证
+Apache License 2.0
+
+Copyright (c) 2018-2019 macrozheng
