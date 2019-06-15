@@ -5,6 +5,8 @@
 
 ## 如果您觉得有帮助，请点右上角 "Star" 支持一下谢谢
 
+关注公众号 获取更多资料和体验小程序
+<img src="https://images.gitee.com/uploads/images/2019/0519/174631_65c2a4e8_134431.png" width="140px" height="140px" />
 [TOC]
 
 ## 1. 项目介绍
