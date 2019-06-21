@@ -174,6 +174,14 @@ uni-app 是一个使用 Vue.js 开发跨平台应用的前端框架，开发者�
     </tr>
 </table>
 
+>   发布页面 http://m3w.cn/mallcloud  
+>   h5地址  http://www.yjlive.cn:8082/#/ 
+>  后台管理地址 http://www.yjlive.cn:8090 
+>  小程序体验码
+>  ![输入图片说明](https://images.gitee.com/uploads/images/2019/0621/100856_b901ecef_134431.png "屏幕截图.png")
+>  app体验 加群下载
+>  apk下载 链接: https://pan.baidu.com/s/1UiFtg3AQ2-muNjfQjsjXPw 提取码: nda2
+
 > cloud框架和组件来源：https://gitee.com/owenwangwen/open-capacity-platform
  https://gitee.com/zlt2000/microservices-platform
 > 业务逻辑来源：https://github.com/shenzhuan/mallplus https://gitee.com/macrozheng/mall
