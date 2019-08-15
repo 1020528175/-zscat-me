@@ -11,7 +11,7 @@
 
 ## 1. 项目介绍
 
-* **技术交流群** [419078373 473023475 203747031]
+* **技术交流群** [195405248]
 * **详细在线文档** [点击查看](https://gitee.com/zscat/mallcloud-platform/wikis)
 * **演示地址**
   * url： [http://www.yjlive.cn:8090/#/login](http://www.yjlive.cn:8090/#/login)
